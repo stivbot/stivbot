@@ -1,42 +1,55 @@
-# Probot & Vercel example
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLucBerge%2Fstiv&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+# STIV (Free) 
 
-This repository is an example of how to deploy the "Hello, World" of probot apps to [Vercel](https://vercel.com).
+Stiv is your personnal assistant to help you validate your business ideas, whether it is a startup, an app, an algorithm or anything else!
 
-## Local setup
+Our bot will help you to:
+- **Identify the most promising ideas your have:** A dashboard to help you evaluate the potential of each of your ideas. Identify your future gems with simple indicators.
+- **Develop your ideas step-by-step:** Sketch out your concept, research your market, determine your setup costs, and make financial forecasts—from lightbulb to launch, figure out everything you need to start your business off on the right foot. Find new sources of inspiration, make the most of their lessons, find your future collaborators or consider potential partnerships.
+- **Find similar projects around the world in one click:** We carry out for you a state of the art of similar projects around the globe.
+- **Get valuable feedbacks in days:** By analyzing the feedbacks from potential customers, you can better understand their expectations, identify the strengths and weaknesses of your ideas and adapt it accordingly.
 
-Install dependencies
+STIV is compatible with many tools!
 
-```
-npm install
-```
+<TODO>
 
-Start the server
+## Give us feedbacks
 
-```
-npm start
-```
-
-Follow the instructions to register a new GitHub app.
-
-## Deployment
-
-The app is continuously deployed using [Vercel's GitHub app](https://github.com/apps/vercel).
-
-### Considerations
-- Make sure you configure [the environment variables for your GitHub App](https://probot.github.io/docs/configuration/) in Vercel. You can read more about how to do it in [their docs](https://vercel.com/docs/concepts/projects/environment-variables).
-- Vercel [expects to find your lambda functions under `/api` folder]([url](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions)). Make sure your functions are placed there and double check Vercel detected your Lambda Functions during the deployment process by checking the logs:
-
-![image](https://user-images.githubusercontent.com/2574275/187179364-b0019f95-be41-462a-97d5-facf4de39095.png)
+Tell us what are the main features you would like to have: [GO TO THE SURVEY](https://docs.google.com/forms/d/e/1FAIpQLSeGtKxOjLO57NSpSwdnLebfLFwrPg7XzPMUFC-i8lhPih9bzQ/viewform) 
 
 ## How it works
 
-The [api/github/webhooks/index.js](api/github/webhooks/index.js) file is handling requests to `POST /api/github/webhooks`, make sure to configure your GitHub App registration's webhook URL accordingly.
+1. Download the GitHub App
+2. Allow acces to your private repository
+3. Create an issue describing your idea
+4. Follow the instructions
 
-## Other examples[^1]
-- [Using TypeScript + Vercel](https://github.com/oscard0m/example-vercel-ts) by [@oscard0m](https://github.com/oscard0m)
+## Setup
 
-[^1]: Do you have any other examples you would like to share? Feel free to open a Pull Request and share yours!
+```sh
+# Install dependencies
+npm install
+
+# Run the bot
+npm start
+```
+
+## Docker
+
+```sh
+# 1. Build container
+docker build -t ideal .
+
+# 2. Start container
+docker run -e APP_ID=<app-id> -e PRIVATE_KEY=<pem-value> ideal
+```
+
+## Contributing
+
+If you have suggestions for how ideal could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
+
+For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
-[ISC](LICENSE)
+[ISC](LICENSE) © 2023 ideal

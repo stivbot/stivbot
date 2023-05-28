@@ -1,8 +1,9 @@
 {
-  "name": "@probot/example-vercel",
+  "name": "app-ideal-stiv",
   "version": "1.0.0",
   "private": true,
-  "description": "Probot & Google Cloud Functions example",
+  "description": "The Business Planning Bot",
+  "homepage": "https://github.com/app-ideal/extention-github",
   "scripts": {
     "start": "probot run ./app.js",
     "test": "node test.js"
