@@ -12,6 +12,7 @@
   "license": "ISC",
   "repository": "github:probot/example-vercel",
   "dependencies": {
+    "openai": "^3.2.1",
     "probot": "^12.2.7"
   },
   "devDependencies": {
