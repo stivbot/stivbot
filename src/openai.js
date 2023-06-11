@@ -8,17 +8,21 @@ class OpenAi {
 
 	PREFIX = "You are a business planning expert. You have helped entrepreneurs to go from an idea to a succesfull business. Your goal is to answer user demands."
 
-	constructor(api_key) {
+	constructor() {
+		if(process.env.OPENAI_API_KEY == null || process.env.OPENAI_API_KEY == undefined) {
+			throw new Error(`Env variable OPENAI_API_KEY is missing`)
+		}
+
 		const configuration = new Configuration({
-			api_key,
+			apiKey: process.env.OPENAI_API_KEY,
 		});
 		this.client = new OpenAIApi(configuration);
 	}
 
-	async request(discussionId, message) {
-		console.log("Sending request to OpenAI with discussion " + discussionId);
+	async request(message) {
+		console.log("Sending request to OpenAI");
 
-		return await this.client.createChatCompletion({
+		let completion = await this.client.createChatCompletion({
 			model: this.MODEL,
 			messages: [
 				{
@@ -31,8 +35,9 @@ class OpenAi {
 				}
 			],
 			max_tokens: this.MAX_TOKENS,
-			//stop: this.STOP_PATTERN,
+			stop: this.STOP_PATTERN,
 		});
+		return completion.data.choices[0].message.content;
 	}
 }
 

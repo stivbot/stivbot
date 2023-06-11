@@ -1,4 +1,4 @@
-const { closestMatch } = require("closest-match");
+const { MapMatcher } = require("./matcher.js");
 const SECTION = require('./section.js');
 const STATE = require('./state.js');
 
@@ -21,13 +21,15 @@ class Idea {
 		"hypothesis":  SECTION.ASSUMPTIONS,
 	};
 
+	static MATCHER = new MapMatcher(Idea.CLOSEST_MATCH_MAPPING);
+
     constructor(issue) {
 		this.issue;
 		this.body = issue.data.body;
 		this.sections = this.#parseBody(this.body);
 
 		//TODO get state from database
-		this.state = STATE.UNSTRUCTURED;
+		this.state = STATE.NEW;
 		//this.state = ...
 		//if (this.state == null) {
 		//	  this.state = STATE.NEW;
@@ -40,7 +42,7 @@ class Idea {
 		let sections_location = [];
 		for (const [i, line] of lines.entries()) {
 			if (line.trim().startsWith(Idea.SECTION_DELIMITER_SUBSTRING)) {
-				const match = closestMatch(line.trim(), Object.keys(Idea.CLOSEST_MATCH_MAPPING));
+				const match = Idea.MATCHER.get(line);
 				if (match != undefined) {
 					const name = Idea.CLOSEST_MATCH_MAPPING[match];
 					sections_location.push({

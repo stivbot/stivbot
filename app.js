@@ -1,10 +1,11 @@
 const { Bot } = require('./src/bot.js');
-const chatBot = new Bot(null);
 
 ENV_VARIABLES = [
 	"OPENAI_API_KEY"
 ]
 check_env_variables(ENV_VARIABLES);
+
+const chatBot = new Bot();
 
 /**
  * @param {import('probot').Probot} app
