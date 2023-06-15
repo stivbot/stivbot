@@ -1,6 +1,7 @@
 const { MapMatcher } = require("./matcher.js");
 const SECTION = require('./section.js');
 const STATE = require('./state.js');
+const { IdeaConnector } = require('./mongodb.js')
 
 class Idea {
 
@@ -15,25 +16,26 @@ class Idea {
 		"solution": SECTION.SOLUTION,
 		"advantages": SECTION.PROS,
 		"disadvantages": SECTION.CONS,
-		"pros":  SECTION.PROS,
-		"cons":  SECTION.CONS,
-		"assumptions":  SECTION.ASSUMPTIONS,
-		"hypothesis":  SECTION.ASSUMPTIONS,
+		"pros": SECTION.PROS,
+		"cons": SECTION.CONS,
+		"assumptions": SECTION.ASSUMPTIONS,
+		"hypothesis": SECTION.ASSUMPTIONS,
 	};
 
 	static MATCHER = new MapMatcher(Idea.CLOSEST_MATCH_MAPPING);
 
-    constructor(issue) {
-		this.issue;
+    constructor(issue, state = STATE.NEW) {
+		this.id = //TODO
 		this.body = issue.data.body;
 		this.sections = this.#parseBody(this.body);
+		this.state = state;
+	}
 
-		//TODO get state from database
-		this.state = STATE.NEW;
-		//this.state = ...
-		//if (this.state == null) {
-		//	  this.state = STATE.NEW;
-		//}
+	async fetch() {
+		const fetch_idea = await new IdeaConnector().get(this.id);
+		if(fetch_idea) {
+			this.state = fetch_idea.state;
+		}
 	}
 
 	#parseBody(body) {

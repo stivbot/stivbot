@@ -1,7 +1,8 @@
 const { Bot } = require('./src/bot.js');
 
 ENV_VARIABLES = [
-	"OPENAI_API_KEY"
+	"OPENAI_API_KEY",
+    "MONGODB_URI"
 ]
 check_env_variables(ENV_VARIABLES);
 

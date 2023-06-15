@@ -45,7 +45,8 @@ class Bot {
         console.log(`Issue ${issue.data.html_url} edited`);
 
         //Get idea from text
-        let idea = new Idea(issue);
+        var idea = new Idea(issue)
+        await idea.fetch();
 
         console.log(`Current state: ${idea.state}`);
         console.log('Sections');
