@@ -1,4 +1,5 @@
-const { Bot } = require('./src/bot.js');
+require('./src/lib/string')
+const { GithubBot } = require('./src/platforms/github/githubBot');
 
 ENV_VARIABLES = [
 	"OPENAI_API_KEY",
@@ -6,7 +7,7 @@ ENV_VARIABLES = [
 ]
 check_env_variables(ENV_VARIABLES);
 
-const chatBot = new Bot();
+const githubBot = new GithubBot();
 
 /**
  * @param {import('probot').Probot} app
@@ -15,12 +16,12 @@ module.exports = (app) => {
     app.log("Yay! The app was loaded!");
 
     app.on("issues.opened", async (context) => {
-        return await chatBot.newIssue(context);
+        return await githubBot.newIssue(context);
     });
 
     app.on("issues.edited", async (context) => {
         //If help required
-        return await chatBot.issueEdited(context);
+        return await githubBot.issueEdited(context);
     })
 };
 

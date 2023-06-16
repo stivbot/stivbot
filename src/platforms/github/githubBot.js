@@ -1,30 +1,21 @@
-const { OpenAi } = require("./openai.js");
-const { Idea } = require('./idea.js');
-const SECTION = require('./section.js');
-const { TrueFalseMatcher } = require("./matcher.js");
+const { AbstractBot } = require('../abstract/abstractBot');
+const { Idea } = require('../../idea');
+const { TrueFalseMatcher } = require("../../lib/matcher");
 const PropertiesReader = require('properties-reader');
 
-
-// First, checks if it isn't implemented yet.
-if (!String.prototype.format) {
-    String.prototype.format = function() {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function(match, number) { 
-            return typeof args[number] != 'undefined'
-                ? args[number]
-                : match
-                ;
-        });
-    };
-}
-
-class Bot {
+class GithubBot extends AbstractBot {
 
     PROPERTIES = PropertiesReader('static/properties/github.properties');
 
-	constructor() {
-		this.openAi = new OpenAi();
-	}
+    /*bind() {
+        app.post('/new_issue', (req, res) => {
+            this.newIssue(context);
+        });
+
+        app.post('/issue_edited', (req, res) => {
+            this.issueEdited(context);
+        });
+    }*/
 
     async newIssue(context) {
         // https://octokit.github.io/rest.js/v19#issues-create-comment
@@ -48,7 +39,7 @@ class Bot {
         var idea = new Idea(issue)
 
         //Fetch idea from database
-        await idea.fetch();
+        //await idea.fetch();
 
         console.log(`Current state: ${idea.state}`);
         console.log('Sections');
@@ -59,7 +50,7 @@ class Bot {
         const response = await this.compute(idea);
 
         //Save idea in database
-        await idea.save();
+        //await idea.save();
 
         //Edit first bot message
         return await context.octokit.issues.updateComment(
@@ -70,33 +61,26 @@ class Bot {
         );
     }
 
-    async compute(idea) {
-        var response = null;
-        switch (idea.state) {
-            case STATE.NEW:
-                response = await this.goToStateUnstructured(idea);
-                idea.state = STATE.UNSTRUCTURED;
-                break;
-            case STATE.UNSTRUCTURED:
-                if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC)) {
-                    response = await this.goToStateP(idea);
-                    idea.state = STATE.P;
-                }
-                break;
-            case STATE.P:
-                if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC) && idea.sections.hasOwnProperty(SECTION.SOLUTION)) {
-                    response = await this.goToStatePS(idea);
-                    idea.state = STATE.PS;
-                }
-                break;
-            case STATE.PS:
-                break;
-            default:
-                //Nothing to do
-        }
+    async #getIssue(context) {
+        return await context.octokit.issues.get(context.issue());
+    }
 
-        //TODO build full answer (answers + dashboard + history)
-        return response;
+    async #getBotComment(context) {
+        //Get the app
+        let app = await context.octokit.apps.getAuthenticated()
+
+        // Get first bot message
+        let comment = null;
+        let comments = await context.octokit.issues.listComments(context.issue());
+        for (const c of comments.data) {
+            if (`${app.data.name}[bot]` == c.user.login) {
+                comment = c;
+            }
+        }
+        if (comment == null)
+            throw new Error("Could not find the bot comment");
+
+        return comment;
     }
 
     async goToStateUnstructured(idea) {
@@ -138,30 +122,8 @@ class Bot {
     async goToStatePS(idea) {
         //Open AI TODO
     }
-
-    async #getIssue(context) {
-        return await context.octokit.issues.get(context.issue());
-    }
-
-    async #getBotComment(context) {
-        //Get the app
-        let app = await context.octokit.apps.getAuthenticated()
-
-        // Get first bot message
-        let comment = null;
-        let comments = await context.octokit.issues.listComments(context.issue());
-        for (const c of comments.data) {
-            if (`${app.data.name}[bot]` == c.user.login) {
-                comment = c;
-            }
-        }
-        if (comment == null)
-            throw new Error("Could not find the bot comment");
-
-        return comment;
-    }
 }
 
 module.exports = {
-	  Bot
+    GithubBot
 }

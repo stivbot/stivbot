@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-const { MissingEnvVarError } = require('./errors/missingEnvVarError.js')
+const { MissingEnvVarError } = require('../errors/missingEnvVarError')
 
 class MongoDB {
 
@@ -39,7 +39,7 @@ class AbstractConnector {
 
     static {
         AbstractConnector.mongodb = new MongoDB();
-        AbstractConnector.mongodb.connect();
+        //AbstractConnector.mongodb.connect();
     }
 
     constructor(collection_name, get_function, set_function) {
