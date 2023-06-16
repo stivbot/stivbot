@@ -40,7 +40,6 @@ class AbstractConnector {
     static {
         AbstractConnector.mongodb = new MongoDB();
         AbstractConnector.mongodb.connect();
-        console.log(this.mongodb);
     }
 
     constructor(collection_name, get_function, set_function) {

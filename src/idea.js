@@ -38,6 +38,10 @@ class Idea {
 		}
 	}
 
+	async save(){
+		await new IdeaConnector().set(this);
+	}
+
 	#parseBody(body) {
 		// Find sections in the body
 		let lines = body.split("\n");

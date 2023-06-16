@@ -46,6 +46,8 @@ class Bot {
 
         //Get idea from text
         var idea = new Idea(issue)
+
+        //Fetch idea from database
         await idea.fetch();
 
         console.log(`Current state: ${idea.state}`);
@@ -55,6 +57,9 @@ class Bot {
         //Compute the appropriate anwser for the current idea
         const before = idea.state; //TODO remove
         const response = await this.compute(idea);
+
+        //Save idea in database
+        await idea.save();
 
         //Edit first bot message
         return await context.octokit.issues.updateComment(
