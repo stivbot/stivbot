@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-const { MissingEnvVarError } = require('../errors/errors')
+const { MissingEnvVarError } = require('../error')
 
 class MongoDB {
 

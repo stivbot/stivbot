@@ -1,4 +1,4 @@
-const { NullAttributeError } = require('../../errors/errors')
+const { NullAttributeError } = require('../../error')
 
 class Action {
     constructor(instruction, body = null) {

@@ -1,5 +1,5 @@
 const { Dashboard } = require('./dashboard');
-const { NullAttributeError } = require('../../errors/errors')
+const { NullAttributeError } = require('../../error')
 
 class AbstractBuilder {
     constructor(idea, advice, action) {
