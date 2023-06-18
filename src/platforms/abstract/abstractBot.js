@@ -31,8 +31,6 @@ class AbstractBot {
             default:
                 //Nothing to do
         }
-
-        //TODO build full answer (answers + dashboard + history)
         return response;
     }
 }

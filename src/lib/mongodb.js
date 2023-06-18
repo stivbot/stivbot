@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-const { MissingEnvVarError } = require('../errors/missingEnvVarError')
+const { MissingEnvVarError } = require('../errors/errors')
 
 class MongoDB {
 
@@ -26,10 +26,10 @@ class MongoDB {
         return await collection.find(query).toArray();
     }
 
-    async insert(collection_name, element) {
+    async upsert(collection_name, query, element) {
         const db = this.client.db(MongoDB.DATABASE_NAME);
         const collection = db.collection(collection_name);
-        return await collection.insertMany([element]);
+        return await collection.updateOne(query, { $set: element }, { upsert: true });
     }
 }
 
@@ -57,15 +57,15 @@ class AbstractConnector {
     }
 
     async set(element) {
-        return await AbstractConnector.mongodb.insert(this.collection_name,  this.set_function(element));
+        return await AbstractConnector.mongodb.upsert(this.collection_name,  this.get_function(element), this.set_function(element));
     }
 }
 
 class IdeaConnector extends AbstractConnector {
 
     static COLLECTION_NAME = "ideas";
-    static GET_FUNCTION = (id) => { return {
-        id: id
+    static GET_FUNCTION = (idea) => { return {
+        id: idea.id
     }};
     static SET_FUNCTION = (idea) => { return {
         id: idea.id,

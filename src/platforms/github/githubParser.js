@@ -5,7 +5,8 @@ const SECTION = require('../../section');
 
 class GithubParser extends AbstractParser {
 
-	static SECTION_DELIMITER_SUBSTRING = "##"
+	static ID_PREFIX = "github";
+	static SECTION_DELIMITER_SUBSTRING = "##";
 	static CLOSEST_MATCH_MAPPING = {
 		"idea": SECTION.INTRO,
 		"title": SECTION.INTRO,
@@ -24,6 +25,10 @@ class GithubParser extends AbstractParser {
 
 	static MATCHER = new MapMatcher(GithubParser.CLOSEST_MATCH_MAPPING);
 
+	constructor() {
+		super(GithubParser.ID_PREFIX);
+	}
+
     parse(issue) {
         const id = this.#getId(issue);
         const body = issue.data.body;
@@ -32,7 +37,7 @@ class GithubParser extends AbstractParser {
     }
 
     #getId(issue){
-        return //TODO
+        return super.getId().concat(issue.data.id)
     }
 
 	#getSections(issue) {
