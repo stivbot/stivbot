@@ -51,7 +51,6 @@ class GithubBot extends AbstractBot {
         console.log(`Sections: ${Object.keys(idea.sections)}`);
 
         //Compute the appropriate anwser for the current idea
-        const before = idea.state; //TODO remove
         const {advice, action} = await this.compute(idea);
 
         //Build answer
