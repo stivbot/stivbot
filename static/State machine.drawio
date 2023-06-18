@@ -1,10 +1,16 @@
 <mxfile host="65bd71144e">
     <diagram id="krljrG-080-gJVbuGZBD" name="Page-1">
-        <mxGraphModel dx="2282" dy="1954" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="2176" dy="2004" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="5" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+                <mxCell id="12" value="&lt;div&gt;Get inspiration from the above advice and edit your idea accordingly.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="180" width="320" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;div style=&quot;line-height: 19px;&quot;&gt;Edit your issue and explain what problematics your business idea answer to.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                    <mxGeometry x="721" y="-240" width="320" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="1520" y="-640" width="320" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-9" value="True or False" style="rhombus;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
@@ -23,9 +29,6 @@
                         <mxPoint x="60" y="-620" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-12" value="&lt;div&gt;Here are problematics your idea could answer.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;For the next steps, we need to be able to identify the sections of your ideas. Make sure the issue description respect this format:&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;```markdown&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;# &amp;lt;idea name&amp;gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;lt;short sentence explaining the idea&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;## Problemtatic&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;lt;explain the problematic&amp;gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;# Solution&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;lt;explain the solution&amp;gt;&lt;/div&gt;&lt;div&gt;```&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-                    <mxGeometry x="720" y="-400" width="320" height="360" as="geometry"/>
-                </mxCell>
                 <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-13" value="Propose problematics this business idea could answer.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;UNSTRUCTURED&amp;gt;&lt;/b&gt;&lt;br&gt; &lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
                     <mxGeometry x="720" y="-600" width="320" height="120" as="geometry"/>
                 </mxCell>
@@ -38,10 +41,10 @@
                         <mxPoint x="1430" y="80" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-18" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="SiDgM4X2iEhWQP8Cc1aZ-13" target="SiDgM4X2iEhWQP8Cc1aZ-12" edge="1">
+                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-18" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="SiDgM4X2iEhWQP8Cc1aZ-13" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="1333" y="70" as="sourcePoint"/>
-                        <mxPoint x="1335" y="162" as="targetPoint"/>
+                        <mxPoint x="880" y="-400" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-19" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="dkDqb4Elm5v7orU0FPq_-6" target="SiDgM4X2iEhWQP8Cc1aZ-15" edge="1">
@@ -50,14 +53,14 @@
                         <mxPoint x="533" y="278" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-22" value="Identify the prosof the following business idea:&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;UNSTRUCTURED&amp;gt;&lt;/b&gt;&lt;br&gt; &lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-480" y="320" width="280" height="120" as="geometry"/>
+                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-22" value="Identify the pros of the following business idea:&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;UNSTRUCTURED&amp;gt;&lt;/b&gt;&lt;br&gt; &lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="-480" y="320" width="320" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-24" value="&lt;div&gt;List potential solutions to these problematics&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;PROBLEMATIC&amp;gt;&lt;/b&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-480" y="80" width="280" height="120" as="geometry"/>
+                    <mxGeometry x="-480" y="80" width="320" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-25" value="&lt;div class=&quot;flex flex-grow flex-col gap-3&quot;&gt;&lt;div class=&quot;min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap break-words&quot;&gt;Imagine one product answering most of the problematics&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-120" y="80" width="280" height="120" as="geometry"/>
+                    <mxGeometry x="-80" y="80" width="320" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-26" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="SiDgM4X2iEhWQP8Cc1aZ-24" target="SiDgM4X2iEhWQP8Cc1aZ-25" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -99,13 +102,13 @@
                         <mxPoint x="-680" y="440" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-38" value="&lt;div&gt;Here is a busine idea answering the same problemtatic. You can get inspiration from it.&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/b&gt;&lt;br&gt; &lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-                    <mxGeometry x="240" y="80" width="280" height="120" as="geometry"/>
+                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-38" value="&lt;div&gt;You have identifed problematics your business idea answers to. There may be multiple ways to answer the same problematics. It is time to think out of the box!&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Here is a product answering the same problemtatic.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="20" width="320" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-39" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="SiDgM4X2iEhWQP8Cc1aZ-25" target="SiDgM4X2iEhWQP8Cc1aZ-38" edge="1">
+                <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-39" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="SiDgM4X2iEhWQP8Cc1aZ-25" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-290" y="790" as="sourcePoint"/>
-                        <mxPoint x="-340" y="800" as="targetPoint"/>
+                        <mxPoint x="320" y="140" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="SiDgM4X2iEhWQP8Cc1aZ-40" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
@@ -187,10 +190,10 @@
                     <mxGeometry x="-620" y="240" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="dkDqb4Elm5v7orU0FPq_-22" value="&lt;br&gt;&lt;div&gt;Ignore all previous instructions.&lt;/div&gt;&lt;div&gt;You are a business planning assistant.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Identify the underlying assumptions the following idea relies on.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;P_S&amp;gt;&lt;/b&gt;&lt;br&gt; &lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-480" y="760" width="280" height="120" as="geometry"/>
+                    <mxGeometry x="-480" y="760" width="320" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="dkDqb4Elm5v7orU0FPq_-23" value="&lt;br&gt;&lt;div&gt;Ignore all previous instructions.&lt;/div&gt;&lt;div&gt;You are a business planning assistant.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Setup a verification strategy in order to verify the following assumptions.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;P_S_A&amp;gt;&lt;/b&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-480" y="1000" width="280" height="120" as="geometry"/>
+                    <mxGeometry x="-480" y="1000" width="320" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="dkDqb4Elm5v7orU0FPq_-24" value="P_S" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="-680" y="760" width="120" height="120" as="geometry"/>
@@ -217,7 +220,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="dkDqb4Elm5v7orU0FPq_-29" value="&lt;div&gt;Don't forget to mention the pros and cons of your business idea.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Here are some proposals you can add&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;```markdown&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;## Pros&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;## Cons&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&amp;lt;OPENAI ANWSER&amp;gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt; &lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;snapToPoint=1;" parent="1" vertex="1">
-                    <mxGeometry x="-120" y="320" width="280" height="280" as="geometry"/>
+                    <mxGeometry x="-80" y="320" width="320" height="280" as="geometry"/>
                 </mxCell>
                 <mxCell id="dkDqb4Elm5v7orU0FPq_-32" value="&lt;div align=&quot;center&quot;&gt;&lt;b&gt;New issue&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="-620" y="-1120" width="100" height="40" as="geometry"/>
@@ -250,31 +253,31 @@
                     <mxGeometry x="210" y="-510" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-8" value="2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-                    <mxGeometry x="1010" y="-70" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="1010" y="-190" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-9" value="3" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
                     <mxGeometry x="1810" y="-630" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-10" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-230" y="170" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="-190" y="170" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-11" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-230" y="410" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="-190" y="410" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-12" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="130" y="170" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="210" y="170" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-13" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-                    <mxGeometry x="490" y="170" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="610" y="230" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-14" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-                    <mxGeometry x="130" y="570" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="210" y="570" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-15" value="Identify the con of the following business idea:&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;lt;UNSTRUCTURED&amp;gt;&lt;/b&gt;&lt;br&gt; &lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-480" y="480" width="280" height="120" as="geometry"/>
+                    <mxGeometry x="-480" y="480" width="320" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-16" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="-230" y="570" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="-190" y="570" width="40" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="8RcHYvnYNmlZ4JkyIdvy-18" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;edgeStyle=orthogonalEdgeStyle;" parent="1" source="SiDgM4X2iEhWQP8Cc1aZ-28" target="8RcHYvnYNmlZ4JkyIdvy-15" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -298,17 +301,26 @@
                         <mxPoint x="-130" y="510" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="2" value="&lt;div&gt;Your idea description is too short. Make sure it explain the problemtatic and the solution.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;arcSize=50;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                <mxCell id="2" value="&lt;div&gt;Your idea description is too short. Make sure it explain the problemtatic and the solution.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;arcSize=50;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
                     <mxGeometry x="-80" y="-600" width="320" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Great job! Your business idea explains the problematic and the solution. Having one section for the problematic and another one for the solutionn is important to correctly structure your idea. Here is what it could look like:&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                <mxCell id="3" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Great job! Your business idea explains the problematic and the solution. Having one section for the problematic and another one for the solutionn is important to correctly structure your idea. Here is what it could look like:&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
                     <mxGeometry x="1520" y="-880" width="320" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+                <mxCell id="4" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="1520" y="-760" width="320" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Structure your business idea with headers so I can identify the different sections:&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                <mxCell id="6" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Structure your business idea with headers so I can identify the different sections:&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
                     <mxGeometry x="1520" y="-720" width="320" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Sounds like a great idea! However, you did not identify the problematic it answers I have identified problematics your solution could answer to:&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                    <mxGeometry x="721" y="-400" width="320" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="721" y="-280" width="320" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="&lt;div style=&quot;line-height: 19px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&amp;lt;OPENAI ANSWER&amp;gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="320" y="140" width="320" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
