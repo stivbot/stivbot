@@ -1,7 +1,7 @@
 const { AbstractBot } = require('../abstract/abstractBot');
-const { Idea } = require('../../idea');
 const { TrueFalseMatcher } = require("../../lib/matcher");
 const PropertiesReader = require('properties-reader');
+const { GithubParser } = require('./githubParser');
 
 class GithubBot extends AbstractBot {
 
@@ -36,10 +36,11 @@ class GithubBot extends AbstractBot {
         console.log(`Issue ${issue.data.html_url} edited`);
 
         //Get idea from text
-        var idea = new Idea(issue)
+        const parser = new GithubParser(issue);
+        const idea = parser.parse(issue);
 
         //Fetch idea from database
-        //await idea.fetch();
+        await idea.fetch();
 
         console.log(`Current state: ${idea.state}`);
         console.log('Sections');
@@ -50,7 +51,7 @@ class GithubBot extends AbstractBot {
         const response = await this.compute(idea);
 
         //Save idea in database
-        //await idea.save();
+        await idea.save();
 
         //Edit first bot message
         return await context.octokit.issues.updateComment(

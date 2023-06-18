@@ -29,7 +29,7 @@ class MongoDB {
     async insert(collection_name, element) {
         const db = this.client.db(MongoDB.DATABASE_NAME);
         const collection = db.collection(collection_name);
-        return await collection.insert([element]);
+        return await collection.insertMany([element]);
     }
 }
 
@@ -39,7 +39,7 @@ class AbstractConnector {
 
     static {
         AbstractConnector.mongodb = new MongoDB();
-        //AbstractConnector.mongodb.connect();
+        AbstractConnector.mongodb.connect();
     }
 
     constructor(collection_name, get_function, set_function) {
@@ -57,7 +57,7 @@ class AbstractConnector {
     }
 
     async set(element) {
-        return await this.mongodb.insert(this.collection_name,  this.set_function(element));
+        return await AbstractConnector.mongodb.insert(this.collection_name,  this.set_function(element));
     }
 }
 

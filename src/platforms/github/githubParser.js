@@ -1,5 +1,6 @@
 const { AbstractParser } = require('../abstract/abstractParser');
 const { MapMatcher } = require("../../lib/matcher");
+const { Idea } = require('../../idea');
 const SECTION = require('../../section');
 
 class GithubParser extends AbstractParser {
@@ -27,13 +28,14 @@ class GithubParser extends AbstractParser {
         const id = this.#getId(issue);
         const body = issue.data.body;
         const sections = this.#getSections(issue);
+		return new Idea(id, body, sections);
     }
 
     #getId(issue){
         return //TODO
     }
 
-	#getSection(issue) {
+	#getSections(issue) {
 		// Find sections in the body
 		let lines = issue.data.body.split("\n");
 		let sections_location = [];
