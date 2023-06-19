@@ -25,6 +25,18 @@ class GithubBot extends AbstractBot {
         );
     }
 
+    async reactionToComment(context) {
+        
+        // Get the bot message
+        let comment = await this.#getBotComment(context);
+
+        //If state is NEW
+            //If is thumb up and 
+                //issueEdited(context)
+            //If thumb down
+                //remove bot comment
+    }
+
     async issueEdited(context) {
         // https://octokit.github.io/rest.js/v19#issues-list-comments
         
@@ -79,7 +91,7 @@ class GithubBot extends AbstractBot {
 
     async #getBotComment(context) {
         //Get the app
-        let app = await context.octokit.apps.getAuthenticated()
+        let app = await context.octokit.apps.getAuthenticated();
 
         // Get first bot message
         let comment = null;
@@ -99,10 +111,10 @@ class GithubBot extends AbstractBot {
     async goToStateUnstructured(idea) {
         var advice = null;
         var action = null;
-        const matcher = new TrueFalseMatcher()
+        const matcher = new TrueFalseMatcher();
 
         //Fisrt request to OpenAI
-        const response_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.1").format(idea.body))
+        const response_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.1").format(idea.body));
 
         //If response is False
         if (!matcher.get(response_openai_1)) {
@@ -112,22 +124,45 @@ class GithubBot extends AbstractBot {
         //If response is True
         else {
             //Second request to AI
-            const response_openai_2 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.2").format(idea.body))
+            const response_openai_2 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.2").format(idea.body));
             //If response is False
             if (!matcher.get(response_openai_2)) {
                 //Third request to AI
-                var response_openai_3 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.3").format(idea.body))
+                var response_openai_3 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.3").format(idea.body));
                 advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.2"), response_openai_3);
                 action = new Action(LOCALE.GITHUB.get("github.unstructured.action.2"));
             }
             //If response is True
             else {
                 //Fourth request to OpenAI
-                const response_openai_4 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.4").format(idea.body))
+                const response_openai_4 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.4").format(idea.body));
                 advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.3"), response_openai_4);
                 action = new Action(LOCALE.GITHUB.get("github.unstructured.action.3"), response_openai_4);
             }
         }
+        return {advice, action};
+    }
+
+    async goToStateP(idea) {
+        //Fisrt request to OpenAI
+        await this.openAi.request(LOCALE.GITHUB.get("github.p.openai.1").format(idea.sections.problematic));
+
+        //Second request to OpenAI
+        const response_openai_2 = await this.openAi.request(LOCALE.GITHUB.get("github.p.openai.2"), false);
+
+        const advice = new Advice(LOCALE.GITHUB.get("github.p.advice.1"), response_openai_2);
+        const action = new Action(LOCALE.GITHUB.get("github.p.action.1"));
+
+        return {advice, action};
+    }
+
+    async goToStatePS(idea) {
+        //First request to OpenAI
+        const response_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.ps.openai.1").format(idea.body));
+
+        const advice = new Advice(LOCALE.GITHUB.get("github.ps.advice.1"), response_openai_1);
+        const action = new Action(LOCALE.GITHUB.get("github.ps.action.1"), response_openai_1);
+
         return {advice, action};
     }
 }
