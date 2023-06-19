@@ -12,8 +12,6 @@ class OpenAi {
 	MAX_TOKENS = 1000
 	STOP_PATTERN = ['<|im_end|>']
 
-	PREFIX = "You are a business planning expert. You have helped entrepreneurs to go from an idea to a succesfull business. Your goal is to answer user demands."
-
 	constructor() {
 		if(process.env.OPENAI_API_KEY == null || process.env.OPENAI_API_KEY == undefined) {
 			throw new Error(`Env variable OPENAI_API_KEY is missing`)
@@ -25,38 +23,49 @@ class OpenAi {
 		this.client = new OpenAIApi(configuration);
 	}
 
-	reset() {
-		this.messages = [{
-			"role": ROLE.SYSTEM,
-			"content": this.PREFIX,
-		}]
-	}
-
-	async request(message, reset_chat = true) {
+	async request(message, conversation = new Conversation()) {
 		console.log("Sending request to OpenAI");
 
-		if (reset_chat) {
-			this.reset();
-		}
-
-		this.messages.push({
-			"role": ROLE.USER,
-			"content": message,
-		});
+		conversation.addUserMessage(message);
 
 		let completion = await this.client.createChatCompletion({
 			model: this.MODEL,
-			messages: this.messages,
+			messages: conversation.messages,
 			max_tokens: this.MAX_TOKENS,
 			stop: this.STOP_PATTERN,
 		});
 
-		this.messages.push({
-			"role": ROLE.ASSISTANT,
-			"content": completion.data.choices[0].message.content,
-		});
+		conversation.addAssistantMessage(completion.data.choices[0].message.content);
+		return conversation;
+	}
+}
 
-		return completion.data.choices[0].message.content;
+class Conversation {
+
+	static PREFIX = "You are a business planning expert. You have helped entrepreneurs to go from an idea to a succesfull business. Your goal is to answer user demands."
+
+	constructor() {
+		this.messages = [];
+		this.#addMessage(ROLE.SYSTEM, Conversation.PREFIX)
+	}
+
+	#addMessage(role, content) {
+		this.messages.push({
+			role,
+			content,
+		});
+	}
+
+	addUserMessage(content) {
+		this.#addMessage(ROLE.USER, content);
+	}
+
+	addAssistantMessage(content) {
+		this.#addMessage(ROLE.ASSISTANT, content);
+	}
+
+	getLastMessage(){
+		return this.messages[this.messages.length - 1].content;
 	}
 }
 

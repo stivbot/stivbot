@@ -114,30 +114,30 @@ class GithubBot extends AbstractBot {
         const matcher = new TrueFalseMatcher();
 
         //Fisrt request to OpenAI
-        const response_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.1").format(idea.body));
+        const conversation_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.1").format(idea.body));
 
         //If response is False
-        if (!matcher.get(response_openai_1)) {
+        if (!matcher.get(conversation_openai_1.getLastMessage())) {
             advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.1"));
             action = new Action(LOCALE.GITHUB.get("github.unstructured.action.1"));
         }
         //If response is True
         else {
             //Second request to AI
-            const response_openai_2 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.2").format(idea.body));
+            const conversation_openai_2 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.2").format(idea.body));
             //If response is False
-            if (!matcher.get(response_openai_2)) {
+            if (!matcher.get(conversation_openai_2.getLastMessage())) {
                 //Third request to AI
-                var response_openai_3 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.3").format(idea.body));
-                advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.2"), response_openai_3);
+                const conversation_openai_3 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.3").format(idea.body));
+                advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.2"), conversation_openai_3.getLastMessage());
                 action = new Action(LOCALE.GITHUB.get("github.unstructured.action.2"));
             }
             //If response is True
             else {
                 //Fourth request to OpenAI
-                const response_openai_4 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.4").format(idea.body));
-                advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.3"), response_openai_4);
-                action = new Action(LOCALE.GITHUB.get("github.unstructured.action.3"), response_openai_4);
+                const conversation_openai_4 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.4").format(idea.body));
+                advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.3"), conversation_openai_4.getLastMessage());
+                action = new Action(LOCALE.GITHUB.get("github.unstructured.action.3"), conversation_openai_4.getLastMessage());
             }
         }
         return {advice, action};
@@ -145,12 +145,12 @@ class GithubBot extends AbstractBot {
 
     async goToStateP(idea) {
         //Fisrt request to OpenAI
-        await this.openAi.request(LOCALE.GITHUB.get("github.p.openai.1").format(idea.sections.problematic));
+        const conversation_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.p.openai.1").format(idea.sections.problematic));
 
         //Second request to OpenAI
-        const response_openai_2 = await this.openAi.request(LOCALE.GITHUB.get("github.p.openai.2"), false);
+        const conversation_openai_2 = await this.openAi.request(LOCALE.GITHUB.get("github.p.openai.2"), conversation_openai_1);
 
-        const advice = new Advice(LOCALE.GITHUB.get("github.p.advice.1"), response_openai_2);
+        const advice = new Advice(LOCALE.GITHUB.get("github.p.advice.1"), conversation_openai_2.getLastMessage());
         const action = new Action(LOCALE.GITHUB.get("github.p.action.1"));
 
         return {advice, action};
@@ -158,10 +158,10 @@ class GithubBot extends AbstractBot {
 
     async goToStatePS(idea) {
         //First request to OpenAI
-        const response_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.ps.openai.1").format(idea.body));
+        const conversation_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.ps.openai.1").format(idea.body));
 
-        const advice = new Advice(LOCALE.GITHUB.get("github.ps.advice.1"), response_openai_1);
-        const action = new Action(LOCALE.GITHUB.get("github.ps.action.1"), response_openai_1);
+        const advice = new Advice(LOCALE.GITHUB.get("github.ps.advice.1"), conversation_openai_1.getLastMessage());
+        const action = new Action(LOCALE.GITHUB.get("github.ps.action.1"), conversation_openai_1.getLastMessage());
 
         return {advice, action};
     }
