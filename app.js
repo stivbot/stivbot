@@ -1,5 +1,6 @@
 require('./src/lib/string')
 const { GithubBot } = require('./src/platforms/github/githubBot');
+const { DoNothingError } = require('./src/error');
 
 ENV_VARIABLES = [
 	"OPENAI_API_KEY",
@@ -20,8 +21,18 @@ module.exports = (app) => {
     });
 
     app.on("issues.edited", async (context) => {
-        //If help required
-        return await githubBot.issueEdited(context);
+        try {
+            return await githubBot.issueEdited(context);
+        }
+        catch (e) {
+            if (e instanceof DoNothingError) {
+                //Do nothing
+                console.log("Do nothing");
+            }
+            else {
+                throw e;
+            }
+        }
     })
 };
 

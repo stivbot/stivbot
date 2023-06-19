@@ -1,4 +1,5 @@
 const { OpenAi } = require("../../lib/openai");
+const { DoNothingError } = require('../../error');
 const SECTION = require('../../section');
 
 class AbstractBot {
@@ -27,9 +28,9 @@ class AbstractBot {
                 }
                 break;
             case STATE.PS:
-                break;
+                throw new DoNothingError("PS state not implemented");
             default:
-                //Nothing to do
+                throw new Error(`Unknown state: ${idea.state}`);
         }
         return response;
     }

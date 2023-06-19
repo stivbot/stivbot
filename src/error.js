@@ -10,7 +10,14 @@ class NullAttributeError extends Error {
     }
 }
 
+class DoNothingError extends Error {
+    constructor(reason) {
+        super(`Nothing to do for the following reason: ${reason}`);
+    }
+}
+
 module.exports = {
 	MissingEnvVarError,
     NullAttributeError,
+    DoNothingError,
 }
