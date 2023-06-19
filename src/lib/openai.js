@@ -1,5 +1,11 @@
 const { Configuration, OpenAIApi } = require("openai");
 
+const ROLE = {
+	SYSTEM: "system",
+	USER: "user",
+	ASSISTANT: "assistant"
+}
+
 class OpenAi {
 
 	MODEL = "gpt-3.5-turbo"
@@ -19,28 +25,42 @@ class OpenAi {
 		this.client = new OpenAIApi(configuration);
 	}
 
-	async request(message) {
+	reset() {
+		this.messages = [{
+			"role": ROLE.SYSTEM,
+			"content": this.PREFIX,
+		}]
+	}
+
+	async request(message, reset_chat = true) {
 		console.log("Sending request to OpenAI");
+
+		if (reset_chat) {
+			this.reset();
+		}
+
+		this.messages.push({
+			"role": ROLE.USER,
+			"content": message,
+		});
 
 		let completion = await this.client.createChatCompletion({
 			model: this.MODEL,
-			messages: [
-				{
-					"role": "system",
-					"content": this.PREFIX,
-				},
-				{
-					"role": "user",
-					"content": message,
-				}
-			],
+			messages: this.messages,
 			max_tokens: this.MAX_TOKENS,
 			stop: this.STOP_PATTERN,
 		});
+
+		this.messages.push({
+			"role": ROLE.ASSISTANT,
+			"content": completion.data.choices[0].message.content,
+		});
+
 		return completion.data.choices[0].message.content;
 	}
 }
 
 module.exports = {
 	OpenAi,
+	ROLE
 }
