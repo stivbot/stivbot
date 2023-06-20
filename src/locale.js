@@ -1,5 +1,6 @@
+const path = require('path');
 const PropertiesReader = require('properties-reader');
 
 module.exports = LOCALE = {
-	GITHUB: PropertiesReader('static/properties/github.properties')
+	GITHUB: PropertiesReader(path.join(process.cwd(), 'static/properties/github.properties'))
 };
