@@ -20,9 +20,9 @@ class GithubBot extends AbstractBot {
 
     async newIssue(context) {
         // https://octokit.github.io/rest.js/v19#issues-create-comment
-        /*await context.octokit.issues.createComment(
+        await context.octokit.issues.createComment(
             context.issue({ body: LOCALE.GITHUB.get("github.new.1")})
-        );*/
+        );
         
         await this.issueEdited(context); //Temporary bypass until reaction webhooks are implemented
     }
