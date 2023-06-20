@@ -11,24 +11,22 @@ class AbstractBot {
     async compute(idea) {
         var response = null;
         switch (idea.state) {
-            case STATE.NEW:
-                response = await this.goToStateUnstructured(idea);
-                idea.state = STATE.UNSTRUCTURED;
+            case STATE.NONE:
                 break;
+            case STATE.NEW:
             case STATE.UNSTRUCTURED:
-                if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC)) {
-                    response = await this.goToStateP(idea);
-                    idea.state = STATE.P;
-                }
+                response = await this.stateUnstructured(idea);
                 break;
             case STATE.P:
                 if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC) && idea.sections.hasOwnProperty(SECTION.SOLUTION)) {
-                    response = await this.goToStatePS(idea);
-                    idea.state = STATE.PS;
+                    response = await this.stateP(idea);
                 }
                 break;
             case STATE.PS:
-                throw new DoNothingError("PS state not implemented");
+                if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC) && idea.sections.hasOwnProperty(SECTION.SOLUTION)) {
+                    response = await this.statePS(idea);
+                }
+                break
             default:
                 throw new Error(`Unknown state: ${idea.state}`);
         }
