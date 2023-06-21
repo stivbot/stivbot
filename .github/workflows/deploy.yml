@@ -6,7 +6,7 @@ on:
     branches: [dev]
 
 env:
-  PM2_APP_ID: 1
+  PM2_APP_ID: 2
 
 jobs:
   deploy-on-raspberry:
