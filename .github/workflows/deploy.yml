@@ -18,14 +18,9 @@ jobs:
           pm2 stop $PM2_APP_ID
           pm2 flush $PM2_APP_ID
 
-      - name: Update GITHUB_WORKSPACE
-        run: |
-          export BRANCH=${GITHUB_REF##*/}
-          export GITHUB_WORKSPACE=~/$GITHUB_REPOSITORY/$BRANCH
-          echo GITHUB_WORKSPACE set to $GITHUB_WORKSPACE
-
       - name: Pull repository
         run: |
+          echo ~/$GITHUB_REPOSITORY/${GITHUB_REF##*/}
           export BRANCH=${GITHUB_REF##*/}
           cd ~/$GITHUB_REPOSITORY/$BRANCH
           pwd
@@ -34,5 +29,5 @@ jobs:
       - name: Start pm2 process
         run: |
           pm2 start $PM2_APP_ID
-          sleep 60
-          pm2 logs $PM2_APP_ID
+          sleep 30
+          pm2 logs $PM2_APP_ID --lines 100 --nostream
