@@ -3,7 +3,7 @@ const { MissingEnvVarError } = require('../error')
 
 class MongoDB {
 
-    static DATABASE_NAME = "ideal"
+    static DATABASE_NAME = `stivbot-${process.env.ENV}`;
 
     constructor() {
 		if(process.env.MONGODB_URI == null || process.env.MONGODB_URI == undefined) {
