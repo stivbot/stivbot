@@ -3,7 +3,10 @@ name: Deploy Dev
 on:
   workflow_dispatch:
   push:
-    branches: [dev]
+    branches:
+    - dev
+    paths:
+    - 'src'
 
 env:
   PM2_APP_ID: 2
