@@ -78,13 +78,13 @@ class GithubBot extends AbstractBot {
             const comment = await this.#getBotComment(context);
 
             if (comment == null) {
-                await context.octokit.issues.createComment(
+                return await context.octokit.issues.createComment(
                     context.issue({ body: markdown})
                 );
             }
             else {
                 //Edit first bot message
-                await context.octokit.issues.updateComment(
+                return await context.octokit.issues.updateComment(
                     context.repo({
                         comment_id: comment.id,
                         body: markdown,
