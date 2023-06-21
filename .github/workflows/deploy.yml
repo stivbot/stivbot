@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [dev]
+
+env:
+  PM2_APP_ID: 1
+
+jobs:
+  deploy-on-raspberry:
+    runs-on: self-hosted
+
+    steps:
+      - name: Stop pm2 process
+        run: |
+          pm2 stop $PM2_APP_ID
+          pm2 flush $PM2_APP_ID
+
+      - name: Update GITHUB_WORKSPACE
+        run: |
+          export BRANCH=${GITHUB_REF##*/}
+          export GITHUB_WORKSPACE=~/$GITHUB_REPOSITORY/$BRANCH
+          echo GITHUB_WORKSPACE set to $GITHUB_WORKSPACE
+
+      - name: Pull repository
+        run: |
+          cd ~/$GITHUB_REPOSITORY/$BRANCH
+          git pull
+
+      - name: Start pm2 process
+        run: |
+          pm2 start $PM2_APP_ID
+          sleep 60
+          pm2 logs $PM2_APP_ID
