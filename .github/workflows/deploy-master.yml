@@ -1,0 +1,32 @@
+name: Deploy Master
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+env:
+  PM2_APP_ID: 3
+
+jobs:
+  deploy-master-on-raspberry:
+    runs-on: self-hosted
+
+    steps:
+      - name: Stop pm2 process
+        run: |
+          pm2 stop $PM2_APP_ID
+          pm2 flush $PM2_APP_ID
+
+      - name: Pull repository
+        run: |
+          export REPO=~/$GITHUB_REPOSITORY/${GITHUB_REF##*/}
+          echo $REPO
+          cd $REPO
+          git pull
+
+      - name: Start pm2 process
+        run: |
+          pm2 start $PM2_APP_ID
+          sleep 30
+          pm2 logs $PM2_APP_ID --lines 100 --nostream

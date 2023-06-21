@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Dev
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ env:
   PM2_APP_ID: 2
 
 jobs:
-  deploy-on-raspberry:
+  deploy-dev-on-raspberry:
     runs-on: self-hosted
 
     steps:
