@@ -6,7 +6,7 @@ on:
     branches:
     - dev
     paths:
-    - 'src'
+    - '**.js'
 
 env:
   PM2_APP_ID: 2
