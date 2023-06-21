@@ -3,6 +3,7 @@ const { GithubBot } = require('./src/platforms/github/githubBot');
 const { DoNothingError } = require('./src/error');
 
 ENV_VARIABLES = [
+    "ENV",
 	"OPENAI_API_KEY",
 	"MONGODB_URI"
 ]
