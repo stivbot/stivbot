@@ -20,10 +20,9 @@ jobs:
 
       - name: Pull repository
         run: |
-          echo ~/$GITHUB_REPOSITORY/${GITHUB_REF##*/}
-          export BRANCH=${GITHUB_REF##*/}
-          cd ~/$GITHUB_REPOSITORY/$BRANCH
-          pwd
+          export REPO=~/$GITHUB_REPOSITORY/${GITHUB_REF##*/}
+          echo $REPO
+          cd $REPO
           git pull
 
       - name: Start pm2 process
