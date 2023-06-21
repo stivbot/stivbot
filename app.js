@@ -18,17 +18,11 @@ module.exports = (app) => {
 
     app.on("issues.opened", async (context) => {
 		return await githubBot.newIssue(context);
-		return context.octokit.issues.createComment(
-			context.issue({ body: "New issue" })
-		);
     });
 
     app.on("issues.edited", async (context) => {
         try {
             return await githubBot.issueEdited(context);
-			return context.octokit.issues.createComment(
-				context.issue({ body: "Issue edited" })
-			);
         }
         catch (e) {
             if (e instanceof DoNothingError) {
