@@ -18,12 +18,12 @@ module.exports = (app) => {
     app.log("Yay! The app was loaded!");
 
     app.on("issues.opened", async (context) => {
-		await githubBot.newIssue(context);
+		return await githubBot.newIssue(context);
     });
 
     app.on("issues.edited", async (context) => {
         try {
-            await githubBot.issueEdited(context);
+            return await githubBot.issueEdited(context);
         }
         catch (e) {
             if (e instanceof DoNothingError) {
