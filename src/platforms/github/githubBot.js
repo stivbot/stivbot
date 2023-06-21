@@ -77,7 +77,11 @@ class GithubBot extends AbstractBot {
             // Get the bot message
             const comment = await this.#getBotComment(context);
 
-            if (comment == null) {
+            return await context.octokit.issues.createComment(
+                context.issue({ body: markdown})
+            );
+            
+            /*if (comment == null) {
                 return await context.octokit.issues.createComment(
                     context.issue({ body: markdown})
                 );
@@ -90,7 +94,7 @@ class GithubBot extends AbstractBot {
                         body: markdown,
                     })
                 );
-            }
+            }*/
         }
         else {
             console.log("Nothing to do!");
