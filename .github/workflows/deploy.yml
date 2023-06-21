@@ -27,6 +27,9 @@ jobs:
       - name: Pull repository
         run: |
           cd ~/$GITHUB_REPOSITORY/$BRANCH
+          pwd
+          cd $GITHUB_WORKSPACE
+          pwd
           git pull
 
       - name: Start pm2 process
