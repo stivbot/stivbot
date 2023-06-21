@@ -3,7 +3,10 @@ name: Deploy Master
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches:
+    - master
+    paths:
+    - 'src'
 
 env:
   PM2_APP_ID: 3
