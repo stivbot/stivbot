@@ -1,5 +1,5 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLucBerge%2Fstiv&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
-# STIV (Free) 
+# StivBot 
 
 Stiv is your personnal assistant to help you validate your business ideas, whether it is a startup, an app, an algorithm or anything else!
 
@@ -9,26 +9,22 @@ Our bot will help you to:
 - **Find similar projects around the world in one click:** We carry out for you a state of the art of similar projects around the globe.
 - **Get valuable feedbacks in days:** By analyzing the feedbacks from potential customers, you can better understand their expectations, identify the strengths and weaknesses of your ideas and adapt it accordingly.
 
-STIV is compatible with many tools!
-
-<TODO>
-
 ## Give us feedbacks
 
 Tell us what are the main features you would like to have: [GO TO THE SURVEY](https://docs.google.com/forms/d/e/1FAIpQLSeGtKxOjLO57NSpSwdnLebfLFwrPg7XzPMUFC-i8lhPih9bzQ/viewform) 
 
 ## How it works
 
-1. Download the GitHub App
+1. Install the GitHub App
 2. Allow acces to your private repository
 3. Create an issue describing your idea
 4. Follow the instructions
 
 ## Contributing
 
-If you have suggestions for how ideal could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
+If you have suggestions how stiv could be improved or want to report a bug, open an issue! We'd love all and any contributions.
 For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
-[ISC](LICENSE) © 2023 ideal
+[ISC](LICENSE) © 2023 stivbot
