@@ -8,7 +8,7 @@
 Stiv is your personnal assistant to help you validate your business ideas, whether it is a startup, an app, an algorithm or anything else!
 
 Our bot will help you to:
-- **Identify the most promising ideas your have:** A dashboard to help you evaluate the potential of each of your ideas. Identify your future gems with simple indicators.
+- **Identify the most promising ideas you have:** A dashboard to help you evaluate the potential of each of your ideas. Identify your future gems with simple indicators.
 - **Develop your ideas step-by-step:** Sketch out your concept, research your market, determine your setup costs, and make financial forecasts—from lightbulb to launch, figure out everything you need to start your business off on the right foot. Find new sources of inspiration, make the most of their lessons, find your future collaborators or consider potential partnerships.
 - **Find similar projects around the world in one click:** We carry out for you a state of the art of similar projects around the globe.
 - **Get valuable feedbacks in days:** By analyzing the feedbacks from potential customers, you can better understand their expectations, identify the strengths and weaknesses of your ideas and adapt it accordingly.
