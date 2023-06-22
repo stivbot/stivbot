@@ -1,4 +1,8 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLucBerge%2Fstiv&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+![dev](https://img.shields.io/github/actions/workflow/status/stivbot/stivbot/deploy-dev.yml?label=deploy-dev)
+![master](https://img.shields.io/github/actions/workflow/status/stivbot/stivbot/deploy-master.yml?label=deploy-master)
+
+
 # StivBot 
 
 Stiv is your personnal assistant to help you validate your business ideas, whether it is a startup, an app, an algorithm or anything else!
