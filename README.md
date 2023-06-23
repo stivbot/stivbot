@@ -26,7 +26,7 @@ Tell us what are the main features you would like to have: [GO TO THE SURVEY](ht
 
 ## How it works
 
-1. Install the GitHub App
+1. [Install the GitHub App](https://github.com/marketplace/stivbot)
 2. Allow acces to your private repository
 3. Create an issue describing your idea
 4. Follow the instructions
