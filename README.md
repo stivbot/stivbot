@@ -24,7 +24,7 @@ Our bot will help you to:
 
 ## Getting Started
 
-1. Install the GitHub App in your Github repository.
+1. [Install the GitHub App](https://github.com/marketplace/imgbot) in your Github repository.
 2. Open a new issue in your repository and describe your business idea.
 3. Follow the instructions
 
