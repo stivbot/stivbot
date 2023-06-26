@@ -30,7 +30,7 @@ Our bot will help you to:
 
 ## Give us feedbacks
 
-We value your input! Help us improve StivBot by sharing your feedback and feature suggestions. Please take a moment to complete our survey: [GO TO THE SURVEY](https://docs.google.com/forms/d/e/1FAIpQLSeGtKxOjLO57NSpSwdnLebfLFwrPg7XzPMUFC-i8lhPih9bzQ/viewform)
+We value your input! Help us improve StivBot by sharing your feedback and feature suggestions. Please take a moment to complete our survey: [GO TO THE SURVEY](https://docs.google.com/forms/d/e/1FAIpQLSdnBZ3ewBQNmbdx8TiMUsXl6A0qVDOPLcWKZ46i5CCLdz4Y3A/viewform)
 
 ## Contributing
 
