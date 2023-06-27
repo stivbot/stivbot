@@ -113,14 +113,13 @@ class GithubBot extends AbstractBot {
         let app = await context.octokit.apps.getAuthenticated();
 
         // Get first bot message
-        let comment = null;
         let comments = await context.octokit.issues.listComments(context.issue());
         for (const c of comments.data) {
             if (`${app.data.name}[bot]` == c.user.login) {
-                comment = c;
+                return c;
             }
         }
-        return comment;
+        return null;
     }
 
     async stateUnstructured(idea) {
