@@ -2,46 +2,50 @@ const { AbstractBuilder } = require('../abstract/abstractBuilder');
 const LOCALE = require('../../locale');
 
 class GithubBuilder extends AbstractBuilder {
+
     static SEPARATOR = "\n--------------\n";
 
-    constructor(idea, advice, action, repo) {
+    static BOT_COMMENT_KEY_SUBSTRING = "<!-- key:{0} -->\n"
+    static BOT_COMMENT_KEY_DASHBOARD = "DASHBOARD"
+
+    constructor(idea, answer, repo) {
         if (repo == null) {
             throw new NullAttributeError("repo");
         }
-        super(idea, advice, action);
+        super(idea, answer);
         this.private = repo.data.private;
     }
 
-    build() {
-        var markdown = "";
+    #buildDashboard() {
+        var markdown = GithubBuilder.BOT_COMMENT_KEY_SUBSTRING.format(GithubBuilder.BOT_COMMENT_KEY_DASHBOARD);
 
         //If the repo is private
         if (this.private) {
             //Add info message
-            markdown += LOCALE.GITHUB.get("github.private");
+            markdown += LOCALE.GITHUB.get("repo.private");
         }
         //If the repo is public
         else {
             //Add warning message
-            markdown += LOCALE.GITHUB.get("github.public");
+            markdown += LOCALE.GITHUB.get("repo.public");
         }
-
-        markdown += GithubBuilder.SEPARATOR;
-
-        //Add advice
-        markdown += this.advice.toMarkdown();
-
-        markdown += GithubBuilder.SEPARATOR;
-
-        //Add action
-        markdown += this.action.toMarkdown();
-
-        markdown += GithubBuilder.SEPARATOR;
 
         //Add dashboard
         markdown += this.dashboard.toMarkdown();
 
         return markdown;
+    }
+
+    #buildInstructions() {
+        var markdown = GithubBuilder.BOT_COMMENT_KEY_SUBSTRING.format(this.idea.state);
+        markdown += this.answer.toMarkdown();
+        return markdown;
+    }
+
+    build() {
+        const dashboard = this.#buildDashboard();
+        const instructions = this.#buildInstructions();
+        return {dashboard, instructions};
     }
 }
 

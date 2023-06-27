@@ -1,20 +1,17 @@
-const { Dashboard } = require('./dashboard');
+const { Dashboard } = require('../../dashboard');
 const { NullAttributeError } = require('../../error')
 
 class AbstractBuilder {
-    constructor(idea, advice, action) {
+    constructor(idea, answer) {
         if (idea == null) {
             throw new NullAttributeError("idea");
         }
-        if (advice == null) {
-            throw new NullAttributeError("advice");
-        }
-        if (action == null) {
-            throw new NullAttributeError("action");
+        if (answer == null) {
+            throw new NullAttributeError("answer");
         }
 
-        this.advice = advice;
-        this.action = action;
+        this.idea = idea;
+        this.answer = answer;
         this.dashboard = new Dashboard(idea);
     }
 

@@ -8,12 +8,14 @@ class Idea {
 		this.body = body;
 		this.sections = sections;
 		this.state = state;
+		this.next_state = state;
 	}
 
 	async fetch() {
 		const fetch_idea = await new IdeaConnector().get(this);
 		if(fetch_idea) {
 			this.state = fetch_idea.state;
+			this.next_state = fetch_idea.state;
 		}
 	}
 

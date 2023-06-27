@@ -69,7 +69,7 @@ class IdeaConnector extends AbstractConnector {
     }};
     static SET_FUNCTION = (idea) => { return {
         id: idea.id,
-        state: idea.state
+        state: idea.next_state
     }};
 
     constructor() {

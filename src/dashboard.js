@@ -1,4 +1,5 @@
-const { NullAttributeError } = require('../../error')
+const { NullAttributeError } = require('./error')
+const LOCALE = require('./locale');
 
 class Dashboard {
     constructor(idea) {
@@ -10,9 +11,10 @@ class Dashboard {
     }
 
     toMarkdown() {
-        var markdown = "### Dashboard\n";
+        var markdown = "### Dashboard\n\n";
 
-        //TODO
+        // Add dashboard
+        markdown += LOCALE.GITHUB.get("comment.dashboard");
 
         return markdown;
     }
