@@ -14,6 +14,7 @@ class AbstractBot {
             case STATE.NONE:
                 break;
             case STATE.NEW:
+                break;
             case STATE.UNSTRUCTURED:
                 answer = await this.stateUnstructured(idea);
                 break;

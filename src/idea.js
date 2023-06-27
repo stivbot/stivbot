@@ -8,6 +8,7 @@ class Idea {
 		this.body = body;
 		this.sections = sections;
 		this.state = state;
+		this.next_state = state;
 	}
 
 	async fetch() {

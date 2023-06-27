@@ -2,7 +2,11 @@ const { AbstractBuilder } = require('../abstract/abstractBuilder');
 const LOCALE = require('../../locale');
 
 class GithubBuilder extends AbstractBuilder {
+
     static SEPARATOR = "\n--------------\n";
+
+    static BOT_COMMENT_KEY_SUBSTRING = "<!-- key:{0} -->\n"
+    static BOT_COMMENT_KEY_DASHBOARD = "DASHBAORD"
 
     constructor(idea, answer, repo) {
         if (repo == null) {
@@ -13,7 +17,7 @@ class GithubBuilder extends AbstractBuilder {
     }
 
     #buildDashboard() {
-        var markdown = "";
+        var markdown = GithubBuilder.BOT_COMMENT_KEY_SUBSTRING.format(GithubBuilder.BOT_COMMENT_KEY_DASHBOARD);
 
         //If the repo is private
         if (this.private) {
@@ -32,14 +36,16 @@ class GithubBuilder extends AbstractBuilder {
         return markdown;
     }
 
-    #buildComment() {
-        return this.answer.toMarkdown();
+    #buildInstructions() {
+        var markdown = GithubBuilder.BOT_COMMENT_KEY_SUBSTRING.format(this.idea.state);
+        markdown += this.answer.toMarkdown();
+        return markdown;
     }
 
     build() {
         const dashboard = this.#buildDashboard();
-        const comment = this.#buildComment();
-        return {dashboard, comment};
+        const instructions = this.#buildInstructions();
+        return {dashboard, instructions};
     }
 }
 

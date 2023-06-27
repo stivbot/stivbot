@@ -4,6 +4,7 @@ const { GithubParser } = require('./githubParser');
 const { GithubBuilder } = require('./githubBuilder');
 const { Answer } = require('../abstract/answer');
 const LOCALE = require('../../locale');
+const STATE = require('../../state')
 
 class GithubBot extends AbstractBot {
 
@@ -17,13 +18,15 @@ class GithubBot extends AbstractBot {
         });
     }*/
 
+    // ---------- GITHUB LISTENERS ----------
+
     async newIssue(context) {
         // https://octokit.github.io/rest.js/v19#issues-create-comment
         /*await context.octokit.issues.createComment(
             context.issue({ body: LOCALE.GITHUB.get("github.new.1")})
         );*/
         
-        await this.issueEdited(context); //Temporary bypass until reaction webhooks are implemented
+        await this.reactionToComment(context); //Temporary bypass until reaction webhooks are implemented
     }
 
     async reactionToComment(context) {        
@@ -31,11 +34,20 @@ class GithubBot extends AbstractBot {
 
         //If reaction is thumb up
             // Get issue
-            let issue = await this.#getIssue(context);
+            const issue = await this.#getIssue(context);
 
             //Parse the issue
             const parser = new GithubParser(issue);
             const idea = parser.parse(issue);
+
+            // Set next state
+            idea.next_state = STATE.UNSTRUCTURED;
+
+            // Save idea in database
+            await idea.save();
+
+            // Compute new comment
+            await this.issueEdited(context);
         //Else if reaction is thumb down
             //Remove bot comment
     }
@@ -44,10 +56,10 @@ class GithubBot extends AbstractBot {
         // https://octokit.github.io/rest.js/v19#issues-list-comments
 
         // Get repo
-        let repo = await this.#getRepo(context);
+        const repo = await this.#getRepo(context);
 
         // Get issue
-        let issue = await this.#getIssue(context);
+        const issue = await this.#getIssue(context);
 
         console.log(`Issue ${issue.data.html_url} edited`);
 
@@ -59,38 +71,37 @@ class GithubBot extends AbstractBot {
         await idea.fetch();
 
         console.log(`Id: ${idea.id}`);
-        console.log(`Current state: ${idea.state}`);
         console.log(`Sections: ${Object.keys(idea.sections)}`);
+        console.log(`Current state: ${idea.state}`);
 
         //Compute the appropriate anwser for the current idea
         const answer = await this.compute(idea);
+
+        console.log(`Next state: ${idea.next_state}`);
 
         if (answer != null) {
 
             //Build answer
             const builder = new GithubBuilder(idea, answer, repo);
-            const { dashboard, comment } = builder.build();
+            const { dashboard, instructions } = builder.build();
 
-            //Update dashboard
-            const first_comment = await this.#getFirstBotComment(context);
-            if (first_comment == null) {
-                await context.octokit.issues.createComment(
-                    context.issue({ body: dashboard})
-                );
+            //Create or update dashboard comment
+            const dashboard_comment = await this.#getFirstBotComment(context);
+            if (dashboard_comment == null) {
+                await this.#createBotComment(context, dashboard);
             }
             else {
-                await context.octokit.issues.updateComment(
-                    context.repo({
-                        comment_id: first_comment.id,
-                        body: dashboard,
-                    })
-                );
+                await this.#updateBotComment(context, dashboard_comment, dashboard);
             }
 
-            //Create new comment
-            await context.octokit.issues.createComment(
-                context.issue({ body: comment})
-            );
+            //Create or update instructions comment
+            const instructions_comment = await this.#getBotComment(context, idea.state);
+            if (instructions_comment == null) {
+                await this.#createBotComment(context, instructions);
+            }
+            else {
+                await this.#updateBotComment(context, instructions_comment, instructions);
+            }
 
             //Save idea in database
             await idea.save();
@@ -99,6 +110,8 @@ class GithubBot extends AbstractBot {
             console.log("Nothing to do!");
         }
     }
+
+    // ---------- GITHUB API ----------
 
     async #getIssue(context) {
         return await context.octokit.issues.get(context.issue());
@@ -114,12 +127,43 @@ class GithubBot extends AbstractBot {
 
         // Get first bot message
         let comments = await context.octokit.issues.listComments(context.issue());
-        for (const c of comments.data) {
-            if (`${app.data.name}[bot]` == c.user.login) {
-                return c;
+        for (const comment of comments.data) {
+            if (`${app.data.name}[bot]` == comment.user.login) {
+                return comment;
             }
         }
         return null;
+    }
+
+    async #getBotComment(context, key) {
+        //Get the app
+        let app = await context.octokit.apps.getAuthenticated();
+
+        // Get first bot message
+        let comments = await context.octokit.issues.listComments(context.issue());
+        for (const comment of comments.data) {
+            if (`${app.data.name}[bot]` == comment.user.login) {
+                if (comment.body.contains(GithubBuilder.BOT_COMMENT_KEY_SUBSTRING.format(key))) {
+                    return comment;
+                }
+            }
+        }
+        return null;
+    }
+
+    async #createBotComment(context, body) {
+        return await context.octokit.issues.createComment(
+            context.issue({ body: body})
+        );
+    }
+
+    async #updateBotComment(context, comment, body) {
+        await context.octokit.issues.updateComment(
+            context.repo({
+                comment_id: comment.id,
+                body: body,
+            })
+        );
     }
 
     async stateUnstructured(idea) {
@@ -163,7 +207,7 @@ class GithubBot extends AbstractBot {
                     conversation_openai_4.getLastMessage(),
                     conversation_openai_4.getLastMessage()
                 );
-                idea.state = STATE.P;
+                idea.next_state = STATE.P;
             }
         }
         return answer;
@@ -182,7 +226,7 @@ class GithubBot extends AbstractBot {
             LOCALE.GITHUB.get("github.p.answer.1.instructions"),
             conversation_openai_2.getLastMessage()
         );
-        idea.state = STATE.PS;
+        idea.next_state = STATE.PS;
 
         return answer;
     }
@@ -198,7 +242,7 @@ class GithubBot extends AbstractBot {
             conversation_openai_1.getLastMessage(),
             conversation_openai_1.getLastMessage()
         );
-        idea.state = STATE.NONE;
+        idea.next_state = STATE.NONE;
 
         return answer;
     }
