@@ -38,4 +38,4 @@ We welcome contributions from the community to enhance StivBot's capabilities an
 
 ## License
 
-StivBot is licensed under the [ISC](LICENSE) © 2023 stivbot
+StivBot is licensed under [proprietary LICENSE](LICENSE) © 2023 stivbot
