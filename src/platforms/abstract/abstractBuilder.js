@@ -10,6 +10,7 @@ class AbstractBuilder {
             throw new NullAttributeError("answer");
         }
 
+        this.idea = idea;
         this.answer = answer;
         this.dashboard = new Dashboard(idea);
     }
