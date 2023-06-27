@@ -65,7 +65,7 @@ class GithubBot extends AbstractBot {
         //Compute the appropriate anwser for the current idea
         const answer = await this.compute(idea);
 
-        if (response != null) {
+        if (answer != null) {
 
             //Build answer
             const builder = new GithubBuilder(idea, answer, repo);
