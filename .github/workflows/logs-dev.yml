@@ -1,0 +1,17 @@
+name: Logs Dev
+
+on:
+  workflow_dispatch:
+
+env:
+  PM2_APP_ID: 2
+
+jobs:
+  get-logs:
+    runs-on: self-hosted
+
+    steps:
+      - name: Logs pm2
+        run: |
+          pm2 flush $PM2_APP_ID
+          pm2 logs $PM2_APP_ID
