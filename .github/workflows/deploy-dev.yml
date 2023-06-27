@@ -23,7 +23,7 @@ jobs:
 
       - name: Pull repository
         run: |
-          export REPO=~/$GITHUB_REPOSITORY/${GITHUB_REF##*/}
+          export REPO=~/$GITHUB_REPOSITORY/dev
           echo $REPO
           cd $REPO
           git pull
