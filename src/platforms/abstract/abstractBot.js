@@ -70,7 +70,7 @@ class AbstractBot {
             //If response is True
             else {
                 //Fourth request to OpenAI
-                const conversation_openai_4 = await this.openAi.request(LOCALE.ABS.get("state.unstructured.openai.4").format(idea.body));
+                const conversation_openai_4 = await this.openAi.request(LOCALE.ABSTRACT.get("state.unstructured.openai.4").format(idea.body));
                 answer = new Answer(
                     LOCALE.ABSTRACT.get("state.unstructured.answer.0.title"),
                     LOCALE.ABSTRACT.get("state.unstructured.answer.0.body"),
@@ -122,3 +122,4 @@ class AbstractBot {
 module.exports = {
     AbstractBot
 }
+console.log(LOCALE.ABSTRACT.get("state.unstructured.openai.1"))
