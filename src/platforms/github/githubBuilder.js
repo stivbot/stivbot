@@ -6,7 +6,7 @@ class GithubBuilder extends AbstractBuilder {
     static SEPARATOR = "\n--------------\n";
 
     static BOT_COMMENT_KEY_SUBSTRING = "<!-- key:{0} -->\n"
-    static BOT_COMMENT_KEY_DASHBOARD = "DASHBAORD"
+    static BOT_COMMENT_KEY_DASHBOARD = "DASHBOARD"
 
     constructor(idea, answer, repo) {
         if (repo == null) {
