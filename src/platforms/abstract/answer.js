@@ -27,7 +27,7 @@ class Answer {
             markdown += "> {0}\n\n".format(this.quote.replaceAll('\n', '\n> '));
         }
         if (this.code != null) {
-            markdown += "<details>\n<summary>Markdown</summary>\n\n```markdown\n\n{0}\n```\n</details>".format(this.code);
+            markdown += "<details>\n<summary>Markdown</summary>\n\n```markdown\n{0}\n```\n</details>".format(this.code);
         }
 
         return markdown;
