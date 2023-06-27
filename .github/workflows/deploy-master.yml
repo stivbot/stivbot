@@ -7,6 +7,7 @@ on:
     - master
     paths:
     - '**.js'
+    - '**.properties'
 
 env:
   PM2_APP_ID: 3
