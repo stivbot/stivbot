@@ -2,7 +2,7 @@ const { AbstractBot } = require('../abstract/abstractBot');
 const { TrueFalseMatcher } = require("../../lib/matcher");
 const { GithubParser } = require('./githubParser');
 const { GithubBuilder } = require('./githubBuilder');
-const { Answer } = require('../abstract/answer');
+const { Answer } = require('../../answer');
 const LOCALE = require('../../locale');
 const STATE = require('../../state')
 

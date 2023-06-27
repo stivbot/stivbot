@@ -1,5 +1,5 @@
-const { NullAttributeError } = require('../../error')
-require('../../lib/string')
+const { NullAttributeError } = require('./error')
+require('./lib/string')
 
 class Answer {
     constructor(title, body, instructions, quote = null, code = null) {
