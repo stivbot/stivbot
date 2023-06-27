@@ -22,12 +22,12 @@ class GithubBuilder extends AbstractBuilder {
         //If the repo is private
         if (this.private) {
             //Add info message
-            markdown += LOCALE.GITHUB.get("github.private");
+            markdown += LOCALE.GITHUB.get("repo.private");
         }
         //If the repo is public
         else {
             //Add warning message
-            markdown += LOCALE.GITHUB.get("github.public");
+            markdown += LOCALE.GITHUB.get("repo.public");
         }
 
         //Add dashboard

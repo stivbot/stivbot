@@ -14,7 +14,7 @@ class Dashboard {
         var markdown = "### Dashboard\n\n";
 
         // Add dashboard
-        markdown += LOCALE.GITHUB.get("github.dashboard");
+        markdown += LOCALE.GITHUB.get("comment.dashboard");
 
         return markdown;
     }
