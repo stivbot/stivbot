@@ -15,6 +15,7 @@ class Idea {
 		const fetch_idea = await new IdeaConnector().get(this);
 		if(fetch_idea) {
 			this.state = fetch_idea.state;
+			this.next_state = fetch_idea.state;
 		}
 	}
 
