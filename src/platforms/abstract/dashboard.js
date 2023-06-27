@@ -10,7 +10,7 @@ class Dashboard {
     }
 
     toMarkdown() {
-        var markdown = "### Dashboard\n";
+        var markdown = "### Dashboard\n\n";
 
         //TODO
 
