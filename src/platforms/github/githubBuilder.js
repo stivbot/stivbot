@@ -4,15 +4,15 @@ const LOCALE = require('../../locale');
 class GithubBuilder extends AbstractBuilder {
     static SEPARATOR = "\n--------------\n";
 
-    constructor(idea, advice, action, repo) {
+    constructor(idea, answer, repo) {
         if (repo == null) {
             throw new NullAttributeError("repo");
         }
-        super(idea, advice, action);
+        super(idea, answer);
         this.private = repo.data.private;
     }
 
-    build() {
+    #buildDashboard() {
         var markdown = "";
 
         //If the repo is private
@@ -26,22 +26,20 @@ class GithubBuilder extends AbstractBuilder {
             markdown += LOCALE.GITHUB.get("github.public");
         }
 
-        markdown += GithubBuilder.SEPARATOR;
-
-        //Add advice
-        markdown += this.advice.toMarkdown();
-
-        markdown += GithubBuilder.SEPARATOR;
-
-        //Add action
-        markdown += this.action.toMarkdown();
-
-        markdown += GithubBuilder.SEPARATOR;
-
         //Add dashboard
         markdown += this.dashboard.toMarkdown();
 
         return markdown;
+    }
+
+    #buildComment() {
+        return this.answer.toMarkdown();
+    }
+
+    build() {
+        const dashboard = this.#buildDashboard();
+        const comment = this.#buildComment();
+        return {dashboard, comment};
     }
 }
 

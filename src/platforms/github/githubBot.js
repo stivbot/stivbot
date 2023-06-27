@@ -2,8 +2,7 @@ const { AbstractBot } = require('../abstract/abstractBot');
 const { TrueFalseMatcher } = require("../../lib/matcher");
 const { GithubParser } = require('./githubParser');
 const { GithubBuilder } = require('./githubBuilder');
-const { Advice } = require('../abstract/advice');
-const { Action } = require('../abstract/action');
+const { Answer } = require('../abstract/answer');
 const LOCALE = require('../../locale');
 
 class GithubBot extends AbstractBot {
@@ -64,33 +63,37 @@ class GithubBot extends AbstractBot {
         console.log(`Sections: ${Object.keys(idea.sections)}`);
 
         //Compute the appropriate anwser for the current idea
-        const response = await this.compute(idea);
+        const answer = await this.compute(idea);
 
         if (response != null) {
+
             //Build answer
-            const builder = new GithubBuilder(idea, response.advice, response.action, repo);
-            const markdown = builder.build();
+            const builder = new GithubBuilder(idea, answer, repo);
+            const { dashboard, comment } = builder.build();
 
-            //Save idea in database
-            await idea.save();
-
-            // Get the bot message
-            const comment = await this.#getBotComment(context);
-            
-            if (comment == null) {
-                return await context.octokit.issues.createComment(
-                    context.issue({ body: markdown})
+            //Update dashboard
+            const first_comment = await this.#getFirstBotComment(context);
+            if (first_comment == null) {
+                await context.octokit.issues.createComment(
+                    context.issue({ body: dashboard})
                 );
             }
             else {
-                //Edit first bot message
-                return await context.octokit.issues.updateComment(
+                await context.octokit.issues.updateComment(
                     context.repo({
-                        comment_id: comment.id,
-                        body: markdown,
+                        comment_id: first_comment.id,
+                        body: dashboard,
                     })
                 );
             }
+
+            //Create new comment
+            await context.octokit.issues.createComment(
+                context.issue({ body: comment})
+            );
+
+            //Save idea in database
+            await idea.save();
         }
         else {
             console.log("Nothing to do!");
@@ -105,7 +108,7 @@ class GithubBot extends AbstractBot {
         return await context.octokit.repos.get(context.issue());
     }
 
-    async #getBotComment(context) {
+    async #getFirstBotComment(context) {
         //Get the app
         let app = await context.octokit.apps.getAuthenticated();
 
@@ -121,8 +124,7 @@ class GithubBot extends AbstractBot {
     }
 
     async stateUnstructured(idea) {
-        var advice = null;
-        var action = null;
+        var answer = null;
         const matcher = new TrueFalseMatcher();
 
         //Fisrt request to OpenAI
@@ -130,8 +132,11 @@ class GithubBot extends AbstractBot {
 
         //If response is False
         if (!matcher.get(conversation_openai_1.getLastMessage())) {
-            advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.1"));
-            action = new Action(LOCALE.GITHUB.get("github.unstructured.action.1"));
+            answer = new Answer(
+                LOCALE.GITHUB.get("github.unstructured.answer.0.title"),
+                LOCALE.GITHUB.get("github.unstructured.answer.0.body"),
+                LOCALE.GITHUB.get("github.unstructured.answer.1.instructions")
+            );
         }
         //If response is True
         else {
@@ -141,19 +146,28 @@ class GithubBot extends AbstractBot {
             if (!matcher.get(conversation_openai_2.getLastMessage())) {
                 //Third request to AI
                 const conversation_openai_3 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.3").format(idea.body));
-                advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.2"), conversation_openai_3.getLastMessage());
-                action = new Action(LOCALE.GITHUB.get("github.unstructured.action.2"));
+                answer = new Answer(
+                    LOCALE.GITHUB.get("github.unstructured.answer.0.title"),
+                    LOCALE.GITHUB.get("github.unstructured.answer.0.body"),
+                    LOCALE.GITHUB.get("github.unstructured.answer.2.instructions"),
+                    conversation_openai_3.getLastMessage()
+                );
             }
             //If response is True
             else {
                 //Fourth request to OpenAI
                 const conversation_openai_4 = await this.openAi.request(LOCALE.GITHUB.get("github.unstructured.openai.4").format(idea.body));
-                advice = new Advice(LOCALE.GITHUB.get("github.unstructured.advice.3"), conversation_openai_4.getLastMessage());
-                action = new Action(LOCALE.GITHUB.get("github.unstructured.action.3"), conversation_openai_4.getLastMessage());
+                answer = new Answer(
+                    LOCALE.GITHUB.get("github.unstructured.answer.0.title"),
+                    LOCALE.GITHUB.get("github.unstructured.answer.0.body"),
+                    LOCALE.GITHUB.get("github.unstructured.answer.3.instructions"),
+                    conversation_openai_4.getLastMessage(),
+                    conversation_openai_4.getLastMessage()
+                );
                 idea.state = STATE.P;
             }
         }
-        return {advice, action};
+        return answer;
     }
 
     async stateP(idea) {
@@ -163,22 +177,31 @@ class GithubBot extends AbstractBot {
         //Second request to OpenAI
         const conversation_openai_2 = await this.openAi.request(LOCALE.GITHUB.get("github.p.openai.2"), conversation_openai_1);
 
-        const advice = new Advice(LOCALE.GITHUB.get("github.p.advice.1"), conversation_openai_2.getLastMessage());
-        const action = new Action(LOCALE.GITHUB.get("github.p.action.1"));
+        const answer = new Answer(
+            LOCALE.GITHUB.get("github.p.answer.0.title"),
+            LOCALE.GITHUB.get("github.p.answer.0.body"),
+            LOCALE.GITHUB.get("github.p.answer.1.instructions"),
+            conversation_openai_2.getLastMessage()
+        );
         idea.state = STATE.PS;
 
-        return {advice, action};
+        return answer;
     }
 
     async statePS(idea) {
         //First request to OpenAI
         const conversation_openai_1 = await this.openAi.request(LOCALE.GITHUB.get("github.ps.openai.1").format(idea.body));
 
-        const advice = new Advice(LOCALE.GITHUB.get("github.ps.advice.1"), conversation_openai_1.getLastMessage());
-        const action = new Action(LOCALE.GITHUB.get("github.ps.action.1"), conversation_openai_1.getLastMessage());
+        const answer = new Answer(
+            LOCALE.GITHUB.get("github.ps.answer.0.title"),
+            LOCALE.GITHUB.get("github.ps.answer.0.body"),
+            LOCALE.GITHUB.get("github.ps.answer.1.instructions"),
+            conversation_openai_1.getLastMessage(),
+            conversation_openai_1.getLastMessage()
+        );
         idea.state = STATE.NONE;
 
-        return {advice, action};
+        return answer;
     }
 }
 
