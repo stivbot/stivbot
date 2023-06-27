@@ -143,7 +143,7 @@ class GithubBot extends AbstractBot {
         let comments = await context.octokit.issues.listComments(context.issue());
         for (const comment of comments.data) {
             if (`${app.data.name}[bot]` == comment.user.login) {
-                if (comment.body.contains(GithubBuilder.BOT_COMMENT_KEY_SUBSTRING.format(key))) {
+                if (comment.body.includes(GithubBuilder.BOT_COMMENT_KEY_SUBSTRING.format(key))) {
                     return comment;
                 }
             }
