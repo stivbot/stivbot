@@ -27,5 +27,8 @@
     "branches": [
       "main"
     ]
+  },
+  "engines": {
+    "node": "18.12.1"
   }
 }
