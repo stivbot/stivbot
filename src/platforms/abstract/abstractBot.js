@@ -122,4 +122,3 @@ class AbstractBot {
 module.exports = {
     AbstractBot
 }
-console.log(LOCALE.ABSTRACT.get("state.unstructured.openai.1"))
