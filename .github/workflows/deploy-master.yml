@@ -17,11 +17,6 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Stop pm2 process
-        run: |
-          pm2 stop $PM2_APP_ID
-          pm2 flush $PM2_APP_ID
-
       - name: Pull repository
         run: |
           export REPO=~/$GITHUB_REPOSITORY/master
@@ -29,8 +24,10 @@ jobs:
           cd $REPO
           git pull
 
-      - name: Start pm2 process
+      - name: Restart pm2 process
         run: |
+          pm2 stop $PM2_APP_ID
+          pm2 flush $PM2_APP_ID
           pm2 start $PM2_APP_ID
           sleep 30
           pm2 logs $PM2_APP_ID --lines 100 --nostream
