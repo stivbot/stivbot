@@ -21,13 +21,16 @@ class Answer {
     }
 
     toMarkdown() {
-        var markdown = "# {0}\n\n{1}\n\n### Instructions\n\n{2}\n\n### Proposal\n\n".format(this.title, this.body, this.instructions);
+        var markdown = "# {0}\n\n{1}\n\n### Instructions\n\n{2}\n\n".format(this.title, this.body, this.instructions);
 
-        if (this.quote != null) {
-            markdown += "> {0}\n\n".format(this.quote.replaceAll('\n', '\n> '));
-        }
-        if (this.code != null) {
-            markdown += "<details>\n<summary>Markdown</summary>\n\n```markdown\n{0}\n```\n</details>".format(this.code);
+        if (this.quote != null || this.code != null) {
+            markdown += "### Proposal\n\n";
+            if (this.quote != null) {
+                markdown += "> {0}\n\n".format(this.quote.replaceAll('\n', '\n> '));
+            }
+            if (this.code != null) {
+                markdown += "<details>\n<summary>Markdown</summary>\n\n```markdown\n{0}\n```\n</details>".format(this.code);
+            }
         }
 
         return markdown;
