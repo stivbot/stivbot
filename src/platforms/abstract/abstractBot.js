@@ -3,6 +3,7 @@ const SECTION = require('../../section');
 const { TrueFalseMatcher } = require("../../lib/matcher");
 const { Answer } = require('../../answer');
 const LOCALE = require('../../locale');
+const STATE = require('../../state');
 
 class AbstractBot {
 
@@ -20,15 +21,17 @@ class AbstractBot {
             case STATE.UNSTRUCTURED:
                 answer = await this.stateUnstructured(idea);
                 break;
-            case STATE.P:
+            case STATE.PROBLEMATIC:
                 if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC) && idea.sections.hasOwnProperty(SECTION.SOLUTION)) {
-                    answer = await this.stateP(idea);
+                    answer = await this.stateProblematic(idea);
                 }
                 break;
-            case STATE.PS:
+            case STATE.PROBLEMATIC_SOLUTION:
                 if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC) && idea.sections.hasOwnProperty(SECTION.SOLUTION)) {
-                    answer = await this.statePS(idea);
+                    answer = await this.stateProblematicSolution(idea);
                 }
+                break
+            case STATE.HOW_IT_WORKS:
                 break
             default:
                 throw new Error(`Unknown state: ${idea.state}`);
@@ -78,13 +81,13 @@ class AbstractBot {
                     conversation_openai_4.getLastMessage(),
                     conversation_openai_4.getLastMessage()
                 );
-                idea.next_state = STATE.P;
+                idea.next_state = STATE.PROBLEMATIC;
             }
         }
         return answer;
     }
 
-    async stateP(idea) {
+    async stateProblematic(idea) {
         //Fisrt request to OpenAI
         const conversation_openai_1 = await this.openAi.request(LOCALE.ABSTRACT.get("state.p.openai.1").format(idea.sections.problematic));
 
@@ -97,12 +100,12 @@ class AbstractBot {
             LOCALE.ABSTRACT.get("state.p.answer.1.instructions"),
             conversation_openai_2.getLastMessage()
         );
-        idea.next_state = STATE.PS;
+        idea.next_state = STATE.PROBLEMATIC_SOLUTION;
 
         return answer;
     }
 
-    async statePS(idea) {
+    async stateProblematicSolution(idea) {
         //First request to OpenAI
         const conversation_openai_1 = await this.openAi.request(LOCALE.ABSTRACT.get("state.ps.openai.1").format(idea.body));
 
@@ -113,7 +116,7 @@ class AbstractBot {
             conversation_openai_1.getLastMessage(),
             conversation_openai_1.getLastMessage()
         );
-        idea.next_state = STATE.NONE;
+        idea.next_state = STATE.HOW_IT_WORKS;
 
         return answer;
     }

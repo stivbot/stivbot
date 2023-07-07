@@ -1,7 +1,8 @@
 module.exports = STATE = {
-    NONE: "NONE", //None
+    NONE: "NONE",
     NEW: "NEW",
     UNSTRUCTURED: "UNSTRUCTURED",
-    P: "P", //Problematic
-    PS: "PS", //Problematic + Solution
+    PROBLEMATIC: "PROBLEMATIC",
+    PROBLEMATIC_SOLUTION: "PROBLEMATIC_SOLUTION",
+    HOW_IT_WORKS: "HOW_IT_WORKS",
 };
