@@ -32,6 +32,14 @@ class AbstractBot {
                 }
                 break
             case STATE.HOW_IT_WORKS:
+                if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC) &&
+                  idea.sections.hasOwnProperty(SECTION.SOLUTION) &&
+                  idea.sections.hasOwnProperty(SECTION.PROS) &&
+                  idea.sections.hasOwnProperty(SECTION.CONS)) {
+                    answer = await this.stateHowItWorks(idea);
+                }
+                break
+            case STATE.TECHNOLOGY:
                 break
             default:
                 throw new Error(`Unknown state: ${idea.state}`);
@@ -117,6 +125,21 @@ class AbstractBot {
             conversation_openai_1.getLastMessage()
         );
         idea.next_state = STATE.HOW_IT_WORKS;
+
+        return answer;
+    }
+
+    async stateHowItWorks(idea) {
+        const conversation_openai_1 = await this.openAi.request(LOCALE.ABSTRACT.get("state.how_it_works.openai.1").format(idea.body));
+
+        const answer = new Answer(
+            LOCALE.ABSTRACT.get("state.how_it_works.answer.0.title"),
+            LOCALE.ABSTRACT.get("state.how_it_works.answer.0.body"),
+            LOCALE.ABSTRACT.get("state.how_it_works.answer.1.instructions"),
+            conversation_openai_1.getLastMessage(),
+            conversation_openai_1.getLastMessage()
+        );
+        idea.next_state = STATE.TECHNOLOGY;
 
         return answer;
     }

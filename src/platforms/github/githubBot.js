@@ -109,6 +109,15 @@ class GithubBot extends AbstractBot {
         }
     }
 
+    // ---------- OVERRIDE ----------
+
+    async stateHowItWorks(idea) {
+        var answer = await super.stateHowItWorks(idea);
+        answer.quote = LOCALE.GITHUB.get("state.how_it_works.0.instructions.markdown").format(answer.quote)
+        answer.code = LOCALE.GITHUB.get("state.how_it_works.0.instructions.markdown").format(answer.code)
+        return answer;
+    }
+
     // ---------- GITHUB API ----------
 
     async #getIssue(context) {
