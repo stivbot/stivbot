@@ -22,7 +22,7 @@ jobs:
           export REPO=~/$GITHUB_REPOSITORY/dev
           echo $REPO
           cd $REPO
-          git pull
+          git pull --recurse-submodules
 
       - name: Restart pm2 process
         run: |
