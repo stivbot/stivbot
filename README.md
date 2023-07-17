@@ -19,18 +19,18 @@ Our bot will help you to:
 - **Gather valuable feedbacks:** By leveraging StivBot, you can collect feedback from potential customers in a matter of days. Analyze their expectations and opinions to better understand your idea's strengths and weaknesses. Adapt your concept accordingly to align with customer needs.
 
 <p align="center">
-  <a href="https://github.com/stivbot/sandbox"><img src="https://img.shields.io/badge/Test%20in%20the%20Sandbox-18627d?style=flat-square" height="50" /></a>
+  <a href="https://rebrand.ly/9buf6vh"><img src="https://img.shields.io/badge/Test%20in%20the%20Sandbox-18627d?style=flat-square" height="50" /></a>
 </p>
 
 ## Getting Started
 
-1. [Install the GitHub App](https://github.com/marketplace/stivbot) in your Github repository.
+1. [Install the GitHub App](https://rebrand.ly/p03ct8c) in your Github repository.
 2. Open a new issue in your repository and describe your business idea.
 3. Follow the instructions
 
 ## Give us feedbacks
 
-We value your input! Help us improve StivBot by sharing your feedback and feature suggestions. Please take a moment to complete our survey: [GO TO THE SURVEY](https://docs.google.com/forms/d/e/1FAIpQLSdnBZ3ewBQNmbdx8TiMUsXl6A0qVDOPLcWKZ46i5CCLdz4Y3A/viewform)
+We value your input! Help us improve StivBot by sharing your feedback and feature suggestions. Please take a moment to complete our survey: [GO TO THE SURVEY](https://rebrand.ly/n96awaa)
 
 ## Contributing
 
