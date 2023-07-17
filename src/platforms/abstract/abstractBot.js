@@ -40,6 +40,14 @@ class AbstractBot {
                 }
                 break
             case STATE.TECHNOLOGY:
+                if (idea.sections.hasOwnProperty(SECTION.PROBLEMATIC) &&
+                  idea.sections.hasOwnProperty(SECTION.SOLUTION) &&
+                  idea.sections.hasOwnProperty(SECTION.PROS) &&
+                  idea.sections.hasOwnProperty(SECTION.CONS)) {
+                    answer = await this.stateTechnology(idea);
+                }
+                break
+            case STATE.CUSTOMERS:
                 break
             default:
                 throw new Error(`Unknown state: ${idea.state}`);
@@ -124,13 +132,13 @@ class AbstractBot {
             conversation_openai_1.getLastMessage(),
             conversation_openai_1.getLastMessage()
         );
-        idea.next_state = STATE.HOW_IT_WORKS;
+        idea.next_state = STATE.TECHNOLOGY;
 
         return answer;
     }
 
     async stateHowItWorks(idea) {
-        const conversation_openai_1 = await this.openAi.request(LOCALE.ABSTRACT.get("state.how_it_works.openai.1").format(idea.body));
+        const conversation_openai_1 = await this.openAi.request(LOCALE.ABSTRACT.get("state.how_it_works.openai.1").format(idea.sections.problematic, idea.sections.solution));
 
         const answer = new Answer(
             LOCALE.ABSTRACT.get("state.how_it_works.answer.title"),
@@ -140,6 +148,21 @@ class AbstractBot {
             conversation_openai_1.getLastMessage()
         );
         idea.next_state = STATE.TECHNOLOGY;
+
+        return answer;
+    }
+
+    async stateTechnology(idea) {
+        const conversation_openai_1 = await this.openAi.request(LOCALE.ABSTRACT.get("state.technology.openai.1").format(idea.sections.problematic, idea.sections.solution));
+
+        const answer = new Answer(
+            LOCALE.ABSTRACT.get("state.technology.answer.title"),
+            LOCALE.ABSTRACT.get("state.technology.answer.body"),
+            LOCALE.ABSTRACT.get("state.technology.answer.instructions.1"),
+            conversation_openai_1.getLastMessage(),
+            conversation_openai_1.getLastMessage()
+        );
+        idea.next_state = STATE.CUSTOMERS;
 
         return answer;
     }

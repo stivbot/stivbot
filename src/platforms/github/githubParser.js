@@ -19,8 +19,8 @@ class GithubParser extends AbstractParser {
 		"disadvantages": SECTION.CONS,
 		"pros": SECTION.PROS,
 		"cons": SECTION.CONS,
-		"assumptions": SECTION.ASSUMPTIONS,
-		"hypothesis": SECTION.ASSUMPTIONS,
+		"how it works": SECTION.HOW_IT_WORKS,
+		"technology": SECTION.TECHNOLOGY,
 	};
 
 	static MATCHER = new MapMatcher(GithubParser.CLOSEST_MATCH_MAPPING);

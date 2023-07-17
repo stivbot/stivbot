@@ -4,5 +4,6 @@ module.exports = SECTION = {
 	SOLUTION: "solution",
 	PROS: "pros",
 	CONS: "cons",
-	ASSUMPTIONS: "assumptions",
+	HOW_IT_WORKS: "how_it_works",
+	TECHNOLOGY: "technology",
 };

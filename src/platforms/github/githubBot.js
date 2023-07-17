@@ -113,8 +113,15 @@ class GithubBot extends AbstractBot {
 
     async stateHowItWorks(idea) {
         var answer = await super.stateHowItWorks(idea);
-        answer.quote = LOCALE.GITHUB.get("state.how_it_works.instructions.markdown").format(answer.quote)
-        answer.code = LOCALE.GITHUB.get("state.how_it_works.instructions.markdown").format(answer.code)
+        answer.quote = LOCALE.GITHUB.get("state.how_it_works.instructions.markdown").format(answer.quote);
+        answer.code = LOCALE.GITHUB.get("state.how_it_works.instructions.markdown").format(answer.code);
+        return answer;
+    }
+
+    async stateTechnology(idea) {
+        var answer = await super.stateTechnology(idea);
+        answer.quote = LOCALE.GITHUB.get("state.technology.instructions.markdown").format(answer.quote);
+        answer.code = LOCALE.GITHUB.get("state.technology.instructions.markdown").format(answer.code);
         return answer;
     }
 
