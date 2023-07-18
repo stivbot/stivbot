@@ -10,6 +10,7 @@ class Event {
 
 	async save(){
 		await new EventConnector().set(this);
+		console.log(`Event logged with timestamp ${this.date}`);
 	}
 }
 
