@@ -15,26 +15,11 @@ const githubBot = new GithubBot();
  * @param {import('probot').Probot} app
  */
 module.exports = (app) => {
-    app.log("Yay! The app was loaded!");
+    app.log("Loading the app...");
 
-    app.on("issues.opened", async (context) => {
-		return await githubBot.newIssue(context);
-    });
+    githubBot.bind(app);
 
-    app.on("issues.edited", async (context) => {
-        try {
-            return await githubBot.issueEdited(context);
-        }
-        catch (e) {
-            if (e instanceof DoNothingError) {
-                //Do nothing
-                console.log("Do nothing");
-            }
-            else {
-                throw e;
-            }
-        }
-    })
+    app.log("Loaded!");
 };
 
 

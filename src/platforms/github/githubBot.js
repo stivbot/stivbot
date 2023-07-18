@@ -6,15 +6,26 @@ const STATE = require('../../state')
 
 class GithubBot extends AbstractBot {
 
-    /*bind() {
-        app.post('/new_issue', (req, res) => {
-            this.newIssue(context);
+    bind(app) {
+        app.on("issues.opened", async (context) => {
+            return await this.newIssue(context);
         });
-
-        app.post('/issue_edited', (req, res) => {
-            this.issueEdited(context);
+    
+        app.on("issues.edited", async (context) => {
+            try {
+                return await this.issueEdited(context);
+            }
+            catch (e) {
+                if (e instanceof DoNothingError) {
+                    //Do nothing
+                    console.log("Do nothing");
+                }
+                else {
+                    throw e;
+                }
+            }
         });
-    }*/
+    }
 
     // ---------- GITHUB LISTENERS ----------
 
