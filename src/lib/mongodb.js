@@ -77,6 +77,26 @@ class IdeaConnector extends AbstractConnector {
     }
 }
 
+class EventConnector extends AbstractConnector {
+
+    static COLLECTION_NAME = "events";
+    static GET_FUNCTION = (event) => { return {
+        user: event.user,
+        name: event.name,
+        date: event.date
+    }};
+    static SET_FUNCTION = (event) => { return {
+        user: event.user,
+        name: event.name,
+        date: event.date
+    }};
+
+    constructor() {
+        super(EventConnector.COLLECTION_NAME, EventConnector.GET_FUNCTION, EventConnector.SET_FUNCTION);
+    }
+}
+
 module.exports = {
 	IdeaConnector,
+    EventConnector
 }

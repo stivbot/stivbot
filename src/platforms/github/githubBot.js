@@ -3,10 +3,17 @@ const { GithubParser } = require('./githubParser');
 const { GithubBuilder } = require('./githubBuilder');
 const LOCALE = require('../../locale');
 const STATE = require('../../state')
+const { Event } = require('../../event');
 
 class GithubBot extends AbstractBot {
 
     bind(app) {
+        app.on("issues", async (context) => {
+            console.log(context);
+            //const event = new Event(user, name, date);
+            //event.save();
+        });
+
         app.on("issues.opened", async (context) => {
             return await this.newIssue(context);
         });
