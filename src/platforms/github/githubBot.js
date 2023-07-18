@@ -10,8 +10,27 @@ class GithubBot extends AbstractBot {
     bind(app) {
         app.on("issues", async (context) => {
             console.log(context);
-            //const event = new Event(user, name, date);
-            //event.save();
+            console.log(context.payload.repository.full_name);
+            console.log(`${context.name}_${context.payload.action}`);
+            console.log(Date.now());
+            /*const event = new Event(
+                context.payload.repository.full_name,
+                `${context.name}_${context.payload.action}`,
+                Date.now()
+            );
+            event.save();*/
+        });
+
+        app.on("issue_comment", async (context) => {
+            console.log(context);
+            console.log(context.payload.repository.full_name);
+            console.log(`${context.name}_${context.payload.action}`);
+            console.log(Date.now());
+            /*const event = new Event(
+                context.payload.repository.full_name,
+                `${context.name}_${context.payload.action}`,
+                Date.now()
+            event.save();*/
         });
 
         app.on("issues.opened", async (context) => {
