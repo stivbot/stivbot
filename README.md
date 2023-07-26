@@ -13,7 +13,7 @@ StivBot is your personal assistant designed to help you validate your business i
 ## Key features
 
 Our bot will help you to:
-- **Identify promising ideas:** Utilize our dashboard to evaluate the potential of each of your ideas. With simple indicators, you can identify the most promising gems among your concepts.
+- **Compare your business ideas:** Utilize our dashboard to evaluate the potential of each of your ideas. With simple indicators, you can identify the most promising gems among your concepts.
 - **Step-by-step idea development:** Sketch out your concept, research your market, determine your setup costs, and make financial forecasts—from lightbulb to launch, figure out everything you need to start your business off on the right foot. Find new sources of inspiration, make the most of their lessons, find your future collaborators or consider potential partnerships.
 - **Discover similar projects worldwide:** StivBot conducts a state-of-the-art analysis of similar projects worldwide, allowing you to explore and find inspiration. Discover new sources of ideas, learn from the experiences of others, identify potential collaborators, and consider partnerships.
 - **Gather valuable feedbacks:** By leveraging StivBot, you can collect feedback from potential customers in a matter of days. Analyze their expectations and opinions to better understand your idea's strengths and weaknesses. Adapt your concept accordingly to align with customer needs.
@@ -24,13 +24,19 @@ Our bot will help you to:
 
 ## Getting Started
 
-1. [Install the GitHub App](https://rebrand.ly/p03ct8c) in your Github repository.
+1. Install Stivbot from the Github Marketplace.
+<p align="center">
+  <a href="[https://rebrand.ly/9buf6vh](https://rebrand.ly/p03ct8c)"><img src="https://img.shields.io/badge/Go%20to%20the%20Marketplace-18627d?style=flat-square" height="50" /></a>
+</p>
 2. Open a new issue in your repository and describe your business idea.
 3. Follow the instructions
 
 ## Give us feedbacks
 
-We value your input! Help us improve StivBot by sharing your feedback and feature suggestions. Please take a moment to complete our survey: [GO TO THE SURVEY](https://rebrand.ly/n96awaa)
+We value your input! Help us improve StivBot by sharing your feedback and feature suggestions. Please take a moment to complete our survey.
+<p align="center">
+  <a href="https://rebrand.ly/n96awaa"><img src="https://img.shields.io/badge/Open%20the%20survey-18627d?style=flat-square" height="50" /></a>
+</p>
 
 ## Contributing
 
