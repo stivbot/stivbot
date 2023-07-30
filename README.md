@@ -23,14 +23,14 @@ Our bot will help you to:
 - **Gather valuable feedbacks:** By leveraging StivBot, you can collect feedback from potential customers in a matter of days. Analyze their expectations and opinions to better understand your idea's strengths and weaknesses. Adapt your concept accordingly to align with customer needs.
 
 <p align="center">
-  <a href="https://rebrand.ly/9buf6vh"><img src="https://img.shields.io/badge/Test%20in%20the%20Sandbox-18627d?style=flat-square" height="50" /></a>
+  <a href="https://rebrand.ly/9buf6vh"><img src="https://img.shields.io/badge/Test%20in%20the%20Sandbox-18627d?style=flat-square&logoColor_=fdb813&logo=codesandbox" height="50" /></a>
 </p>
 
 ## Getting Started
 
 1. Install Stivbot from the Github Marketplace.
 <p align="center">
-  <a href="[https://rebrand.ly/9buf6vh](https://rebrand.ly/p03ct8c)"><img src="https://img.shields.io/badge/Go%20to%20the%20Marketplace-18627d?style=flat-square" height="50" /></a>
+  <a href="[https://rebrand.ly/9buf6vh](https://rebrand.ly/p03ct8c)"><img src="https://img.shields.io/badge/Go%20to%20the%20Marketplace-18627d?style=flat-square&logoColor_=fdb813&logo=github" height="50" /></a>
 </p>
 2. Open a new issue in your repository and describe your business idea.
 3. Follow the instructions
@@ -39,7 +39,7 @@ Our bot will help you to:
 
 We value your input! Help us improve StivBot by sharing your feedback and feature suggestions. Please take a moment to complete our survey.
 <p align="center">
-  <a href="https://rebrand.ly/n96awaa"><img src="https://img.shields.io/badge/Open%20the%20survey-18627d?style=flat-square" height="50" /></a>
+  <a href="https://rebrand.ly/n96awaa"><img src="https://img.shields.io/badge/Open%20the%20survey-18627d?style=flat-square&logoColor_=fdb813&logo=googleforms" height="50" /></a>
 </p>
 
 ## Contributing
