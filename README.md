@@ -10,6 +10,10 @@
 
 StivBot is your personal assistant designed to help you validate your business ideas, whether they are startups, apps, algorithms, or any other entrepreneurial venture. With StivBot, you can streamline your idea development process and gain valuable insights to make informed decisions.
 
+<p align="center">
+  <a href="https://discord.gg/tcrdAugs"><img src="https://img.shields.io/badge/Join%20the%20Discord-18627d?style=flat-square&logo=discord&logoColor=white&color=7289da" height="50" /></a>
+</p>
+
 ## Key features
 
 Our bot will help you to:
